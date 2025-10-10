@@ -1,0 +1,97 @@
+/* Hereta variables i estil base de style.css */
+:root{
+  --accent:#7c5cff; --accent-2:#06d6a0; --accent-3:#00bcd4;
+  --radius:16px; --shadow-1:0 10px 30px rgba(0,0,0,.12);
+}
+
+/* HERO específic */
+.hero-landing{ min-height:100svh; display:grid; place-items:center; padding-top:110px; position:relative; }
+.hero-landing #hero-bg{ position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg,#eef2ff 0%, #ffffff 60%); }
+.hero-landing .hero-inner{ text-align:center; display:grid; gap:20px; place-items:center; }
+.hero-landing .headline{ font-family:var(--font-display); font-weight:700; font-size:clamp(40px,7vw,80px); line-height:1.04; display:flex; gap:.4ch; align-items:baseline; justify-content:center; flex-wrap:wrap; max-width:1000px; }
+.hero-landing .grad-text{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero-landing .subhead{ color:var(--muted); max-width:820px; }
+.hero-media{
+  width:min(900px,88vw); margin:18px auto 0; aspect-ratio:16/9; border-radius:22px; overflow:hidden; position:relative;
+  border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 80px rgba(0,0,0,.10);
+  background:var(--bg-2) center/cover no-repeat; background-image:var(--hero);
+  transform:translateZ(0); animation:ken 16s ease-in-out infinite;
+}
+@keyframes ken{ 0%{ transform:scale(1) } 50%{ transform:scale(1.06) translateY(-6px) } 100%{ transform:scale(1) } }
+
+/* Trust strip */
+.trust-strip{ display:grid; gap:10px; justify-items:center; margin-top:8px; color:var(--muted); }
+.trust-strip .rating{ display:flex; align-items:center; gap:6px; }
+.trust-strip .rating i{ color:#f59e0b; }
+.trust-strip .logos{ list-style:none; display:flex; gap:10px; padding:0; margin:0; flex-wrap:wrap; }
+.trust-strip .logos li{ padding:6px 10px; border-radius:999px; background:rgba(0,0,0,.06); border:1px solid rgba(0,0,0,.08); }
+
+/* Pricing */
+.pricing .pricing-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+.price-card{
+  position:relative; padding:22px; border-radius:var(--radius); border:1px solid rgba(0,0,0,.12); background:#fff; box-shadow:var(--shadow-1);
+}
+.price-card .price{ font-size:1.6rem; font-weight:900; margin:6px 0 12px; font-family:var(--font-display); }
+.price-card .features{ list-style:none; margin:0 0 16px; padding:0; display:grid; gap:8px; color:var(--muted); }
+.price-card.highlight{ outline:2px solid var(--accent); box-shadow:0 16px 60px rgba(124,92,255,.18); }
+.price-card .badge{
+  position:absolute; top:12px; right:12px; font-size:.8rem; background:linear-gradient(135deg,var(--accent),#9f7bff);
+  color:#fff; padding:6px 10px; border-radius:999px; font-weight:800;
+}
+
+
+/* ===== FAQ ===== */
+.faq-list {
+  display: grid;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  background: #fff;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+}
+
+.faq-q {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  font-weight: 800;
+  font-family: var(--font-display);
+  cursor: pointer;
+  padding: 14px 16px;
+}
+
+.faq-a {
+  padding: 8px 16px 14px;
+  color: var(--muted);
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+
+/* Form */
+select, textarea, input[type="text"], input[type="email"]{
+  width:100%; background:rgba(0,0,0,.04); border:1px solid rgba(0,0,0,.12);
+  color:var(--text); border-radius:12px; padding:12px 14px; outline:none;
+}
+select{ background:#fff; }
+
+/* WhatsApp btn (mateix estil que la teva web) */
+.whatsapp-button{
+  position:fixed; bottom:14px; right:18px; z-index:1000; display:inline-flex; align-items:center;
+  padding:6px; border:none; background:transparent; border-radius:50px; cursor:pointer; transition:transform .2s ease;
+}
+.whatsapp-button img{ width:44px; height:44px; }
+.whatsapp-button:hover{ transform:scale(1.15); }
+
+/* Responsive */
+@media (max-width:700px){
+  .hero-landing .headline{ flex-direction:column; gap:6px; font-size:clamp(36px,8vw,56px); }
+}
+
