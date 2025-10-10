@@ -456,7 +456,7 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 [data-magnetic]{ position:relative; will-change:transform; }
 :focus-visible{ outline:2px dashed var(--accent); outline-offset:3px; }
 
-/* ======= Preloader ======= */
+/* ======= Preloader ======= 
 .preloader{
   position:fixed; inset:0; z-index:1000; display:grid; place-items:center;
   background: radial-gradient(120% 120% at 50% 10%, rgba(124,92,255,.12), rgba(6,214,160,.10), transparent 70%), var(--bg);
@@ -472,3 +472,4 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 .preloader .monogram{ font-family:var(--font-display); font-weight:800; letter-spacing:.5px; font-size:42px; }
 .preloader .monogram span{ color: var(--accent-2); }
 .preloader .progress{ position:absolute; bottom:-26px; font-family:var(--font-display); color:var(--muted); }
+*/
