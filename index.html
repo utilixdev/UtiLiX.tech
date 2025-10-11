@@ -212,37 +212,68 @@
 
        <!-- Mantenimiento: Essencial vs Pro -->
 
-        <header class="section-head" style="margin-top:34px">
-              <h2 style="font-family:var(--font-display);">
-                <span> Manteni</span><span class="grad-text">miento</span>
-              </h2>
-              <p>Qué incluye cada nivel y a quién va dirigido.</p>
-        </header>
+        <section id="serveis" class="section services" aria-label="Servicios">
+    <div class="container">
+      <header class="section-head">
+        <h2><span data-i18n="services.title">Servicios</span> <span class="grad-text" data-i18n="services.subtitle">end-to-end</span></h2>
+        <p data-i18n="services.desc">Soluciones completas: del concepto al despliegue, con rendimiento top y SEO técnico de base.</p>
+      </header>
 
-        <div class="services-grid">
-          <article class="service-card">
-            <h3>Essencial — 59 €/mes</h3>
-            <ul class="bullets">
-              <li>Actualizaciones menores</li>
-              <li>Uptime + alertas básicas</li>
-              <li>Backups semanales</li>
-              <li>0,5 h/mes de cambios</li>
-              <li>SLA 48 h laborables</li>
-            </ul>
-          </article>
-          <article class="service-card">
-            <h3>Pro — 149 €/mes</h3>
-            <ul class="bullets">
-              <li>Todo lo Essencial</li>
-              <li>Backups diarios + prioridad</li>
-              <li>Mini-audit CWV/SEO mensual</li>
-              <li>2–3 h/mes de cambios</li>
-              <li>SLA 24 h laborables</li>
-            </ul>
-          </article>
-        </div>
+      <div class="services-grid">
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h3 data-i18n="services.maint.title">Mantenimiento</h3>
+          <p data-i18n="services.maint.desc">Monitorización, actualizaciones y soporte. Copias de seguridad y prevención.</p>
+          <ul class="bullets">
+            <li data-i18n="services.maint.b1">Uptime & alertas</li>
+            <li data-i18n="services.maint.b2">Hardening básico</li>
+            <li data-i18n="services.maint.b3">Backups automatizados</li>
+          </ul>
+        </article>
+
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-gauge-high"></i></div>
+          <h3 data-i18n="services.opt.title">Optimizaciones</h3>
+          <p data-i18n="services.opt.desc">Lazy-loading, code-splitting, compresiones y CDN. Rendimiento al máximo.</p>
+          <ul class="bullets">
+            <li data-i18n="services.opt.b1">Auditorías de rendimiento</li>
+            <li data-i18n="services.opt.b2">Core Web Vitals</li>
+            <li data-i18n="services.opt.b3">Mejoras continuas</li>
+          </ul>
+        </article>
       </div>
-    </section>
+      
+      <header class="section-head" style="margin-top:34px">
+        <h2>
+          <span data-i18n="maint_plans.title">Mantenimiento</span>
+        </h2>
+        <p data-i18n="maint_plans.desc">Qué incluye cada nivel y a quién va dirigido.</p>
+      </header>
+
+      <div class="services-grid">
+        <article class="service-card">
+          <h3 data-i18n="maint_plans.e_title">Essencial — 59 €/mes</h3>
+          <ul class="bullets">
+            <li data-i18n="maint_plans.e_b1">Actualizaciones menores</li>
+            <li data-i18n="maint_plans.e_b2">Uptime + alertas básicas</li>
+            <li data-i18n="maint_plans.e_b3">Backups semanales</li>
+            <li data-i18n="maint_plans.e_b4">0,5 h/mes de cambios</li>
+            <li data-i18n="maint_plans.e_b5">SLA 48 h laborables</li>
+          </ul>
+        </article>
+        <article class="service-card">
+          <h3 data-i18n="maint_plans.p_title">Pro — 149 €/mes</h3>
+          <ul class="bullets">
+            <li data-i18n="maint_plans.p_b1">Todo lo Essencial</li>
+            <li data-i18n="maint_plans.p_b2">Backups diarios + prioridad</li>
+            <li data-i18n="maint_plans.p_b3">Mini-audit CWV/SEO mensual</li>
+            <li data-i18n="maint_plans.p_b4">2–3 h/mes de cambios</li>
+            <li data-i18n="maint_plans.p_b5">SLA 24 h laborables</li>
+          </ul>
+        </article>
+      </div>
+      </div>
+  </section>
 
 
 
