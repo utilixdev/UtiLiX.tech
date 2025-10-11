@@ -9,189 +9,23 @@
   <title>UtiLiX.tech — Diseño & Desarrollo Web a Medida (Rápido, SEO & Accesible)</title>
   <meta name="description" content="UtiLiX.tech: diseño y desarrollo web a medida. HTML, CSS, JS, front-end y back-end, rendimiento 90+ CWV, accesibilidad AA/AAA y SEO técnico listo." />
 
+  <!-- Canonical & i18n (client-side) -->
   <link rel="canonical" href="https://utilix.tech/" />
 
+  <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="alternate icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png" sizes="180x180">
 
-  <style>
-/* ======= Reset & variables (LIGHT ONLY) ======= */
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-:root{
-  --bg:#f7f9fc;
-  --bg-2:#ffffff;
-  --surface:rgba(0,0,0,.04);
-  --surface-2:rgba(0,0,0,.12);
-  --text:#0c0f1a;
-  --muted:#525a7a;
-  --accent:#7c5cff;
-  --accent-2:#06d6a0;
-  --shadow-1:0 10px 30px rgba(0,0,0,.12);
-  --radius:16px;
-  --maxw:1200px;
-
-  /* MANTENIM LES FONTS PER EVITAR CLS (font-display: swap s'ha d'aplicar al CSS carregat de forma asíncrona) */
-  --font-display:"Space Grotesk",system-ui,sans-serif;
-  --font-body:"Plus Jakarta Sans",system-ui,sans-serif;
-}
-
-html{
-  scroll-behavior:smooth;
-  scrollbar-gutter: stable both-edges;
-}
-html,body{ height:100%; background:var(--bg); color:var(--text); }
-body{ font-family:var(--font-body); line-height:1.5; overflow-x:hidden; }
-a{ color:inherit; text-decoration:none; }
-img{ max-width:100%; display:block; }
-.container{ width:min(92vw,var(--maxw)); margin-inline:auto; }
-.section{ position:relative; } /* Hem eliminat el padding perquè no és crític per la portada */
-
-/* ======= Global texture (Mantenim per evitar un salt visual si fos el LCP) ======= */
-body::after{
-  content:""; position:fixed; inset:-40% -40% -40% -40%;
-  background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
-  background-size:3px 3px; opacity:.07; pointer-events:none; z-index:1;
-}
-.grad-text{
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
-}
-
-/* ======= Buttons (Mantenim només el base i primari) ======= */
-.btn{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:14px 18px; border-radius:999px; font-weight:800; letter-spacing:.2px;
-  border:1px solid transparent; background:var(--accent); color:#fff; box-shadow:var(--shadow-1);
-  transition:transform .2s ease; /* Reduïm la transició */
-  cursor:pointer;
-}
-.btn.primary{ background:linear-gradient(135deg,var(--accent),#9f7bff); }
-.btn:hover{ transform:translateY(-2px); }
-/* Eliminem .ghost, .outline, .small, .big - es carregaran després */
-
-/* ======= Header & Nav (Mantenim només la barra superior tancada) ======= */
-.site-header{
-  position:fixed; inset:0 0 auto 0; z-index:50;
-  background:linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,0));
-  backdrop-filter:blur(6px);
-}
-.header-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; padding:14px 0; }
-.brand{ font-weight:900; letter-spacing:.5px; font-size:1.1rem; opacity:.95; font-family:var(--font-display); }
-.brand span{ font-weight:1000; background:linear-gradient(90deg,#7c5cff,#06d6a0); -webkit-background-clip:text; background-clip:text; color:transparent;font-size:1.5rem }
-
-.header-cta{ display:flex; gap:10px; justify-self:end; align-items:center; }
-.only-desktop{ display:none; }
-@media (min-width:900px){ .only-desktop{ display:inline-flex; } }
-
-/* Lang switch (Només els estils bàsics) */
-.lang-switch{ display:inline-flex; gap:6px; padding:4px; border-radius:999px; border:1px solid var(--surface-2); background:#fff; }
-.lang{ border:0; background:transparent; padding:6px 10px; border-radius:999px; font-weight:900; color:var(--muted); cursor:pointer; font-family:var(--font-display); }
-.lang.is-active{ background:rgba(0,0,0,.06); color:#000; border:1px solid rgba(0,0,0,.12); }
-
-/* Hamburguer (Només l'estat tancat) */
-.hamburger{
-  justify-self:center; width:56px; height:56px; border-radius:50%;
-  border:1px solid var(--surface-2); background:#fff; box-shadow:var(--shadow-1);
-  display:grid; place-items:center; cursor:pointer; position:relative; overflow:hidden;
-}
-.hamburger-label{ position:absolute; inset:auto 0 -18px 0; text-align:center; font-size:.7rem; color:var(--muted); }
-.hamburger-box{ display:grid; place-items:center; width:28px; height:28px; }
-.hamburger-inner,.hamburger-inner::before,.hamburger-inner::after{
-  content:""; display:block; width:24px; height:2px; background:#111; border-radius:2px;
-  transition:transform .35s ease, opacity .35s ease;
-}
-.hamburger-inner::before{ transform:translateY(-7px); }
-.hamburger-inner::after{ transform:translateY(7px); }
-/* Eliminem body.nav-open... (es carregarà amb l'arxiu complet) */
-
-/* Eliminem .nav-dim i .nav-overlay. Es carregaran amb l'arxiu complet. */
-
-/* ======= HERO (Mantenim tot el necessari per la secció LCP) ======= */
-.hero{ min-height:100svh; display:grid; place-items:center; padding-top:110px; position:relative; }
-#hero-bg{
-  position:absolute; inset:0; z-index:-1;
-  background:linear-gradient(180deg,#eef2ff 0%, #ffffff 60%);
-}
-#hero-bg::before, #hero-bg::after{
-  content:""; position:absolute; width:60vw; height:60vw; border-radius:50%; filter:blur(60px); opacity:.55; pointer-events:none;
-}
-#hero-bg::before{ top:-20%; left:-10%; background:radial-gradient(circle at 40% 40%, rgba(124,92,255,.25), transparent 60%); }
-#hero-bg::after { bottom:-22%; right:-12%; background:radial-gradient(circle at 60% 60%, rgba(6,214,160,.20), transparent 60%); }
-/* Eliminem @keyframes float1 i float2. L'animació no és crítica. */
-
-.hero-inner{
-  text-align:center; display:grid; gap:20px;
-  place-items:center;
-}
-
-/* ======= HEADLINE — CRITICAL FOR LCP ======= */
-.headline{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:clamp(42px,7vw,88px);
-  line-height:1.04;
-  letter-spacing:.2px;
-  display:flex;
-  align-items:baseline;
-  justify-content:center;
-  gap:.4ch;
-  flex-wrap:nowrap;
-  text-align:center;
-  max-width:min(92vw, var(--maxw));
-  margin-inline:auto;
-}
-.headline-prefix{ display:inline-block; margin-right:0; }
-.headline-dynamic{
-  display:inline-block;
-  white-space:nowrap;
-  min-height:1em;
-  max-width:100%;
-}
-
-/* Evita "salt" visual del text fins que es carreguin les fonts */
-.headline--stack{
-  flex-direction:column; gap:6px; align-items:center;
-}
-.headline--stack .headline-dynamic{
-  width:100% !important; min-width:0 !important; white-space:normal;
-  min-height:2.4em; /* Mantenim la reserva d'alçada per 2 línies */
-}
-@media (max-width:700px){
-  .headline{ flex-direction:column; gap:6px; }
-  .headline-dynamic{ width:100% !important; min-width:0 !important; text-align:center; }
-}
-
-.subhead{ color:var(--muted); max-width:820px; margin:0 auto; }
-.cta{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:10px; }
-
-/* Imatge amb Ken‑Burns lleuger (Mantenim només el necessari per estabilitzar-la) */
-.hero-media{
-  width:min(900px,88vw); margin:26px auto 0; aspect-ratio:16/9; border-radius:22px; overflow:hidden; position:relative;
-  border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 80px rgba(0,0,0,.10);
-  background:var(--bg-2) center/cover no-repeat; background-image:var(--hero);
-}
-/* Eliminem @keyframes ken. L'animació no és crítica. */
-
-/* Scroll hint (No és crític. Podria carregar-se després, però el mantenim si és important pel disseny) */
-.scroll-hint{ display:inline-grid; justify-items:center; gap:8px; margin-top:6px; color:var(--muted); }
-.scroll-hint .mouse{ width:22px; height:34px; border:2px solid var(--muted); border-radius:14px; position:relative; }
-.scroll-hint .mouse::after{ content:""; position:absolute; top:6px; left:50%; width:2px; height:6px; background:var(--muted); transform:translateX(-50%); border-radius:2px; }
-/* Eliminem @keyframes wheel. L'animació no és crítica. */
-
-/* Eliminem tot el codi de: SERVEIS, PROJECTES, METODE, QUOTE, WHATSAPP, FOOTER, Preloader */
-</style>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Icons (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="UtiLiX.tech">
   <meta property="og:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
@@ -200,11 +34,13 @@ body::after{
   <meta property="og:image" content="https://utilix.tech/og-image.jpg">
   <meta property="og:image:alt" content="UtiLiX.tech — Diseño & Desarrollo Web">
 
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
   <meta name="twitter:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
   <meta name="twitter:image" content="https://utilix.tech/og-image.jpg">
 
+  <!-- JSON-LD Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -221,28 +57,25 @@ body::after{
   }
   </script>
 
-  <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="style.css" /></noscript>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" media="print" onload="this.media='all'" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/></noscript>
-
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="no-js" data-lang="es">
+  
+  <!-- PRELOADER 
   <div id="preloader" class="preloader" aria-hidden="true">
     <div class="preloader-inner">
       <div class="ring" aria-hidden="true"></div>
       <div class="monogram" aria-label="UtiLiX.tech">U<span>l</span>X</div>
       <div class="progress" aria-hidden="true"><span id="prePct">0</span>%</div>
     </div>
-  </div>
+  </div> -->
 
+  <!-- HEADER -->
   <header class="site-header" aria-label="Cabecera">
     <div class="container header-inner">
       <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
 
+      <!-- Hamburguesa centrada -->
       <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" type="button">
         <span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
         <span class="hamburger-label" data-i18n="ui.menu">Menú</span>
@@ -258,6 +91,7 @@ body::after{
       </div>
     </div>
 
+    <!-- Backdrop + Menú overlay -->
     <div class="nav-dim" id="navDim" aria-hidden="true"></div>
     <nav id="nav" class="nav-overlay" aria-hidden="true">
       <ul class="nav-list">
@@ -270,6 +104,7 @@ body::after{
     </nav>
   </header>
 
+  <!-- HERO -->
   <section id="hero" class="section hero" aria-label="Hero">
     <div id="hero-bg" aria-hidden="true"></div>
 
@@ -287,12 +122,16 @@ body::after{
         <a href="#quote" class="btn outline scroll-link" data-magnetic><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> <span data-i18n="cta.quote">Pedir propuesta</span></a>
       </div>
 
+      <!-- Si poses imatge sota el hero, afegeix alt i lazy -->
+      <!-- <div class="hero-media tilt" style="--hero:url('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop');"></div> -->
+
       <a href="#serveis" class="scroll-hint scroll-link" aria-label="Haz scroll para continuar">
         <span class="mouse" aria-hidden="true"></span><span class="label" data-i18n="ui.scroll">Desliza</span>
       </a>
     </div>
   </section>
 
+  <!-- SERVEIS -->
   <section id="serveis" class="section services" aria-label="Servicios">
     <div class="container">
       <header class="section-head">
@@ -367,43 +206,47 @@ body::after{
           </ul>
         </article>
       </div>
+    </div>
+  </section>
 
 
-      <!-- SECCIÓ MANTENIMENT 
+       <!-- Mantenimiento: Essencial vs Pro -->
+
         <header class="section-head" style="margin-top:34px">
               <h2 style="font-family:var(--font-display);">
                 <span> Manteni</span><span class="grad-text">miento</span>
               </h2>
               <p>Qué incluye cada nivel y a quién va dirigido.</p>
-          </header>
+        </header>
 
-          <div class="services-grid">
-            <article class="service-card">
-              <h3>Essencial — 59 €/mes</h3>
-              <ul class="bullets">
-                <li>Actualizaciones menores</li>
-                <li>Uptime + alertas básicas</li>
-                <li>Backups semanales</li>
-                <li>0,5 h/mes de cambios</li>
-                <li>SLA 48 h laborables</li>
-              </ul>
-            </article>
-            <article class="service-card">
-              <h3>Pro — 149 €/mes</h3>
-              <ul class="bullets">
-                <li>Todo lo Essencial</li>
-                <li>Backups diarios + prioridad</li>
-                <li>Mini-audit CWV/SEO mensual</li>
-                <li>2–3 h/mes de cambios</li>
-                <li>SLA 24 h laborables</li>
-              </ul>
-            </article>
-          </div>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3>Essencial — 59 €/mes</h3>
+            <ul class="bullets">
+              <li>Actualizaciones menores</li>
+              <li>Uptime + alertas básicas</li>
+              <li>Backups semanales</li>
+              <li>0,5 h/mes de cambios</li>
+              <li>SLA 48 h laborables</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <h3>Pro — 149 €/mes</h3>
+            <ul class="bullets">
+              <li>Todo lo Essencial</li>
+              <li>Backups diarios + prioridad</li>
+              <li>Mini-audit CWV/SEO mensual</li>
+              <li>2–3 h/mes de cambios</li>
+              <li>SLA 24 h laborables</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
 
--->
 
+
+  <!-- PROJECTES -->
   <section id="projectes" class="section projects" aria-label="Proyectos">
     <div class="container">
       <header class="section-head">
@@ -470,6 +313,7 @@ body::after{
     </div>
   </section>
 
+  <!-- METODOLOGIA -->
   <section id="metodologia" class="section method" aria-label="Metodología">
     <div class="container method-grid">
       <div class="method-copy">
@@ -490,6 +334,7 @@ body::after{
     </div>
   </section>
 
+  <!-- PROPUESTA -->
   <section id="quote" class="section quote" aria-label="Solicitar propuesta">
     <div class="container">
       <header class="section-head">
@@ -502,11 +347,12 @@ body::after{
 
       <button class="btn primary big quote-toggle" id="quoteToggle" data-magnetic type="button" aria-expanded="false" data-i18n="quote.open">Abrir formulario</button>
 
+      <!-- Fallback sin JS -->
       <form class="quote-form is-collapsed" id="quoteForm" novalidate
             action="https://formspree.io/f/xeorzwpo" method="POST">
         <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX.tech">
         <input type="hidden" name="_replyto" id="email-hidden">
-        <input type="hidden" name="type"    id="hiddenType"    value="landing">
+        <input type="hidden" name="type"   id="hiddenType"   value="landing">
         <input type="hidden" name="budget" id="hiddenBudget" value="1-3k">
         <input type="hidden" name="speed"  id="hiddenSpeed"  value="normal">
 
@@ -524,9 +370,9 @@ body::after{
           <label for="budget" data-i18n="quote.budget">Rango de inversión estimado</label>
           <div class="chips" id="budget">
             <button type="button" class="chip" data-budget="<1k">&lt; 1.000 €</button>
-            <button type="button" class="chip selected" data-budget="1-2.5k">1000 – 2.500 €</button>
-            <button type="button" class="chip" data-budget="2.5-5k">2.500 – 5.000 €</button>
-            <button type="button" class="chip" data-budget="5-10k">5.000 – 10.000 €</button>
+            <button type="button" class="chip selected" data-budget="1-3k">1.000–3.000 €</button>
+            <button type="button" class="chip" data-budget="3-6k">3.000–6.000 €</button>
+            <button type="button" class="chip" data-budget="6-10k">6.000–10.000 €</button>
             <button type="button" class="chip" data-budget="10k+">10.000 €+</button>
           </div>
         </div>
@@ -540,7 +386,7 @@ body::after{
         </div>
 
         <div class="field">
-          <label for="desc" data-i18n="quote.desc_label">Describe tu proyecto</label>
+          <label for="desc" data-i18n="quote.desc_label">Describe el proyecto</label>
           <textarea id="desc" name="message" rows="4" placeholder="Objetivos, funcionalidades clave, referentes visuales…" data-i18n-placeholder="quote.desc_ph"></textarea>
         </div>
 
@@ -565,6 +411,7 @@ body::after{
       </form>
     </div>
 
+    <!-- WhatsApp flotante -->
     <a href="https://wa.me/34679958614?text=Hola,%20me%20gustaría%20saber%20más%20acerca%20de%20tus%20servicios"
        class="whatsapp-button" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
@@ -572,16 +419,17 @@ body::after{
     </a>
   </section>
 
+  <!-- FOOTER -->
   <footer id="contacte" class="site-footer" aria-label="Pie de página">
     <div class="footer-bg" aria-hidden="true"></div>
     <div class="container footer-grid">
       <div class="foot-brand">
         <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio">UtiLiX.tech</a>
-        <p data-i18n="footer.tagline">Creamos Experiencias Digitales Que Convierten y Perduran.</p>
+        <p data-i18n="footer.tagline">Creamos Experiencias Digitales que Convierten y Perduran.</p>
         <div class="socials">
           <a href="mailto:barucnsue@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-          <a href="https://www.linkedin.com/in/barucnsue/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-          <a href="https://github.com/utilixdev" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
         </div>
       </div>
 
@@ -592,7 +440,6 @@ body::after{
           <li><a href="#projectes" class="scroll-link" data-i18n="nav.projects">Proyectos</a></li>
           <li><a href="#metodologia" class="scroll-link" data-i18n="nav.method">Método</a></li>
           <li><a href="#quote" class="scroll-link" data-i18n="nav.quote">Propuesta</a></li>
-          <li><a href="#contacte" class="scroll-link" data-i18n="nav.contact">Contacto</a></li>
         </ul>
       </nav>
 
