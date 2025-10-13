@@ -15,13 +15,11 @@
     <link rel="alternate icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png" sizes="180x180">
 
-    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="style.css"></noscript>
+    <link rel="stylesheet" href="style.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>        
-    <link rel="preload" href="https://fonts.gstatic.com/s/spacegrotesk/v18/V8mQGfIDlEZaHXo-JgmE1vEq66S_W5_J9lU-Hl_o.woff2" as="font" type="font/woff2" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="UtiLiX.tech">
@@ -54,21 +52,10 @@
 </head>
 <body class="no-js" data-lang="es">
   
-  <!-- PRELOADER 
-  <div id="preloader" class="preloader" aria-hidden="true">
-    <div class="preloader-inner">
-      <div class="ring" aria-hidden="true"></div>
-      <div class="monogram" aria-label="UtiLiX.tech">U<span>l</span>X</div>
-      <div class="progress" aria-hidden="true"><span id="prePct">0</span>%</div>
-    </div>
-  </div> -->
-
-  <!-- HEADER -->
   <header class="site-header" aria-label="Cabecera">
     <div class="container header-inner">
       <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
 
-      <!-- Hamburguesa centrada -->
       <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" type="button">
         <span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
         <span class="hamburger-label" data-i18n="ui.menu">Menú</span>
@@ -84,7 +71,6 @@
       </div>
     </div>
 
-    <!-- Backdrop + Menú overlay -->
     <div class="nav-dim" id="navDim" aria-hidden="true"></div>
     <nav id="nav" class="nav-overlay" aria-hidden="true">
       <ul class="nav-list">
@@ -97,7 +83,6 @@
     </nav>
   </header>
 
-  <!-- HERO -->
   <section id="hero" class="section hero" aria-label="Hero">
     <div id="hero-bg" aria-hidden="true"></div>
 
@@ -115,16 +100,12 @@
         <a href="#quote" class="btn outline scroll-link" data-magnetic><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> <span data-i18n="cta.quote">Pedir propuesta</span></a>
       </div>
 
-      <!-- Si poses imatge sota el hero, afegeix alt i lazy -->
-      <!-- <div class="hero-media tilt" style="--hero:url('https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1600&auto=format&fit=crop');"></div> -->
-
       <a href="#serveis" class="scroll-hint scroll-link" aria-label="Haz scroll para continuar">
         <span class="mouse" aria-hidden="true"></span><span class="label" data-i18n="ui.scroll">Desliza</span>
       </a>
     </div>
   </section>
 
-  <!-- SERVEIS -->
   <section id="serveis" class="section services" aria-label="Servicios">
     <div class="container">
       <header class="section-head">
@@ -203,9 +184,7 @@
   </section>
 
 
-       <!-- Mantenimiento: Essencial vs Pro -->
-
-        <header class="section-head" style="margin-top:34px">
+       <header class="section-head" style="margin-top:34px">
               <h2 style="font-family:var(--font-display);">
                 <span> Manteni</span><span class="grad-text">miento</span>
               </h2>
@@ -239,7 +218,6 @@
 
 
 
-  <!-- PROJECTES -->
   <section id="projectes" class="section projects" aria-label="Proyectos">
     <div class="container">
       <header class="section-head">
@@ -306,7 +284,6 @@
     </div>
   </section>
 
-  <!-- METODOLOGIA -->
   <section id="metodologia" class="section method" aria-label="Metodología">
     <div class="container method-grid">
       <div class="method-copy">
@@ -327,7 +304,6 @@
     </div>
   </section>
 
-  <!-- PROPUESTA -->
   <section id="quote" class="section quote" aria-label="Solicitar propuesta">
     <div class="container">
       <header class="section-head">
@@ -340,7 +316,6 @@
 
       <button class="btn primary big quote-toggle" id="quoteToggle" data-magnetic type="button" aria-expanded="false" data-i18n="quote.open">Abrir formulario</button>
 
-      <!-- Fallback sin JS -->
       <form class="quote-form is-collapsed" id="quoteForm" novalidate
             action="https://formspree.io/f/xeorzwpo" method="POST">
         <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX.tech">
@@ -404,7 +379,6 @@
       </form>
     </div>
 
-    <!-- WhatsApp flotante -->
     <a href="https://wa.me/34679958614?text=Hola,%20me%20gustaría%20saber%20más%20acerca%20de%20tus%20servicios"
        class="whatsapp-button" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
@@ -412,7 +386,6 @@
     </a>
   </section>
 
-  <!-- FOOTER -->
   <footer id="contacte" class="site-footer" aria-label="Pie de página">
     <div class="footer-bg" aria-hidden="true"></div>
     <div class="container footer-grid">
@@ -453,10 +426,10 @@
   </footer>
 
   <script defer src="script.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
-          crossorigin="anonymous" 
-          referrerpolicy="no-referrer"
-          media="print" 
-          onload="this.media='all'"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"
+        media="print" 
+        onload="this.media='all'"/>
 </body>
 </html>
