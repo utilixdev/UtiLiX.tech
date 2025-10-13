@@ -189,7 +189,7 @@
     </script>
 </head>
 <body class="no-js" data-lang="es">
-  
+    
   <header class="site-header" aria-label="Cabecera">
     <div class="container header-inner">
       <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
@@ -321,38 +321,37 @@
     </div>
   </section>
 
+  <header class="section-head" style="margin-top:34px">
+    <h3 style="font-family:var(--font-display);">
+      <span> Manteni</span><span class="grad-text">miento</span>
+    </h3>
+    <p>Qué incluye cada nivel y a quién va dirigido.</p>
+  </header>
 
-        <header class="section-head" style="margin-top:34px">
-              <h2 style="font-family:var(--font-display);">
-                <span> Manteni</span><span class="grad-text">miento</span>
-              </h2>
-              <p>Qué incluye cada nivel y a quién va dirigido.</p>
-        </header>
-
-        <div class="services-grid">
-          <article class="service-card">
-            <h3>Essencial — 59 €/mes</h3>
-            <ul class="bullets">
-              <li>Actualizaciones menores</li>
-              <li>Uptime + alertas básicas</li>
-              <li>Backups semanales</li>
-              <li>0,5 h/mes de cambios</li>
-              <li>SLA 48 h laborables</li>
-            </ul>
-          </article>
-          <article class="service-card">
-            <h3>Pro — 149 €/mes</h3>
-            <ul class="bullets">
-              <li>Todo lo Essencial</li>
-              <li>Backups diarios + prioridad</li>
-              <li>Mini-audit CWV/SEO mensual</li>
-              <li>2–3 h/mes de cambios</li>
-              <li>SLA 24 h laborables</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
+  <div class="services-grid">
+    <article class="service-card">
+      <h3>Essencial — 59 €/mes</h3>
+      <ul class="bullets">
+        <li>Actualizaciones menores</li>
+        <li>Uptime + alertas básicas</li>
+        <li>Backups semanales</li>
+        <li>0,5 h/mes de cambios</li>
+        <li>SLA 48 h laborables</li>
+      </ul>
+    </article>
+    <article class="service-card">
+      <h3>Pro — 149 €/mes</h3>
+      <ul class="bullets">
+        <li>Todo lo Essencial</li>
+        <li>Backups diarios + prioridad</li>
+        <li>Mini-audit CWV/SEO mensual</li>
+        <li>2–3 h/mes de cambios</li>
+        <li>SLA 24 h laborables</li>
+      </ul>
+    </article>
+  </div>
+</div>
+</section>
 
   <section id="projectes" class="section projects" aria-label="Proyectos">
     <div class="container">
@@ -364,7 +363,9 @@
       <div class="projects-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide project-card tilt">
-            <div class="project-media" style="--bg:url('Pic3.webp');"></div>
+            <div class="project-media">
+              <img src="Pic3.webp" alt="Vista previa del proyecto Viajar a NY" width="1600" height="900" loading="lazy" decoding="async">
+            </div>
             <div class="project-info">
               <h3>Viajar a NY — Guía</h3>
               <p data-i18n="projects.items.saas">Landing altamente conversiva con animaciones de producto.</p>
@@ -374,7 +375,9 @@
           </div>
 
           <div class="swiper-slide project-card tilt">
-            <div class="project-media" style="--bg:url('Despacho abogados.webp');"></div>
+            <div class="project-media">
+              <img src="Despacho abogados.webp" alt="Vista previa del proyecto IurisLegal" width="1600" height="900" loading="lazy" decoding="async">
+            </div>
             <div class="project-info">
               <h3>IurisLegal</h3>
               <p data-i18n="projects.items.ecom">Arquitectura headless, pagespeed y conversiones a tope.</p>
@@ -384,7 +387,9 @@
           </div>
 
           <div class="swiper-slide project-card tilt">
-            <div class="project-media" style="--bg:url('Pelu.webp');"></div>
+            <div class="project-media">
+              <img src="Pelu.webp" alt="Vista previa del proyecto Pentina't" width="1600" height="900" loading="lazy" decoding="async">
+            </div>
             <div class="project-info">
               <h3>Pentina't</h3>
               <p data-i18n="projects.items.corp">Landing potente para servicios locales.</p>
@@ -456,9 +461,9 @@
             action="https://formspree.io/f/xeorzwpo" method="POST">
         <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX.tech">
         <input type="hidden" name="_replyto" id="email-hidden">
-        <input type="hidden" name="type"   id="hiddenType"   value="landing">
+        <input type="hidden" name="type"   id="hiddenType"   value="landing">
         <input type="hidden" name="budget" id="hiddenBudget" value="1-3k">
-        <input type="hidden" name="speed"  id="hiddenSpeed"  value="normal">
+        <input type="hidden" name="speed"  id="hiddenSpeed"  value="normal">
 
         <div class="field">
           <label for="type" data-i18n="quote.type">Tipo de proyecto</label>
