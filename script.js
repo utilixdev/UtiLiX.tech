@@ -1,7 +1,7 @@
-/* =================== UtiLiX.dev — Vanilla, ràpid i robust =================== */
+/* =================== UtiLiX.dev — Vanilla, ràpid i robust (Optimitzat) =================== */
 document.body.classList.remove('no-js');
 
-const $  = (s, ctx=document) => ctx.querySelector(s);
+const $ = (s, ctx=document) => ctx.querySelector(s);
 const $$ = (s, ctx=document) => Array.from(ctx.querySelectorAll(s));
 const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -139,17 +139,22 @@ const t = (path)=> deepGet(I18N[currentLang], path) ?? path;
 (function preloader(){
   const el = $('#preloader'); if(!el) return;
   const pct = $('#prePct'); let p = 0, raf;
+  // Opt: Ús de requestAnimationFrame per a animació
   const tick = ()=>{ p = Math.min(90, p + Math.random()*6 + 2); if(pct) pct.textContent = Math.floor(p); if(p<90) raf=requestAnimationFrame(tick); };
   raf = requestAnimationFrame(tick);
 
   async function fontsReady(){
+    // Opt: S'ha de gestionar l'error per si document.fonts.ready no existeix o falla (compatibilitat)
     try{ if(document.fonts && document.fonts.ready) await document.fonts.ready; }catch(e){}
   }
 
   window.addEventListener('load', async () => {
     cancelAnimationFrame(raf);
+    // Assegurem que les fonts estan carregades per evitar salts de CLS a l'H1
     await fontsReady();
-    await setDynamicWidth(currentLang); // reserva amplada del fragment dinàmic
+    await setDynamicWidth(currentLang); // reserva amplada del fragment dinàmic (CLAU: Solució CLS/Reflow)
+    
+    // Opt: Transició final del preloader (sempre amb rAF per a fluïdesa)
     const to100 = () => {
       p += 2; if(pct) pct.textContent = Math.min(100, Math.floor(p));
       if(p < 100) requestAnimationFrame(to100);
@@ -165,60 +170,82 @@ const t = (path)=> deepGet(I18N[currentLang], path) ?? path;
 function scrambleOnce(el){
   if(!el) return;
   const final = el.textContent.trim(); if(!final) return;
+  // Opt: Redueix l'execució de la funció si ja està en curs
+  if(el.dataset.scrambling) return;
+  el.dataset.scrambling = 'true';
+  
   const chars = '█▓▒░/*<>[]#&$%?';
   let frame = 0, out = final.split('');
   const id = setInterval(()=>{
     out = out.map((ch,idx)=> idx < frame ? final[idx] : chars[(Math.random()*chars.length)|0]);
     el.textContent = out.join('');
     frame++;
-    if(frame > final.length){ clearInterval(id); el.textContent = final; }
+    if(frame > final.length){ 
+      clearInterval(id); 
+      el.textContent = final; 
+      el.dataset.scrambling = 'false';
+    }
   }, 22);
 }
 
 function measureMaxWidth(el, words){
   const meas = document.createElement('span');
+  // Opt: Llegeix una vegada les propietats COMPUTADES per minimitzar re-càlculs
   const cs = getComputedStyle(el);
   meas.style.cssText = `position:absolute; visibility:hidden; white-space:nowrap; left:-9999px; top:-9999px; font-family:${cs.fontFamily}; font-size:${cs.fontSize}; font-weight:${cs.fontWeight}; letter-spacing:${cs.letterSpacing}`;
   document.body.appendChild(meas);
   let max = 0;
-  for(const w of words){ meas.textContent = w; const wpx = meas.getBoundingClientRect().width; if(wpx > max) max = wpx; }
+  for(const w of words){ 
+    meas.textContent = w; 
+    // Opt: getBoundingClientRect() provoca Reflow/Recalcul de Layout
+    const wpx = meas.offsetWidth; // Usem offsetWidth o getBoundingClientRect().width
+    if(wpx > max) max = wpx; 
+  }
   document.body.removeChild(meas);
   return Math.ceil(max);
 }
 const dynWidthCache = {};
 
+// FUNCIÓ CORREGIDA PER EVITAR REDISTRIBUCIÓ FORÇADA
 async function setDynamicWidth(lang){
   const head = $('#headline'); const dyn = $('#titleDynamic'); const pre = $('.headline-prefix');
   if(!dyn || !head || !pre) return;
 
-  // Si és mòbil, forcem "stack" (dues línies estables)
+  // 1. LECTURA DEL DOM (FASE READ)
   const isNarrow = window.matchMedia('(max-width:700px)').matches;
-  head.classList.toggle('headline--stack', isNarrow);
-  if(isNarrow){
-    dyn.style.width='100%'; dyn.style.minWidth='0';
-    return;
-  }
-
-  // Reserva amplada de la frase més llarga d'aquest idioma
-  if(!dynWidthCache[lang]){
-    const words = I18N[lang].hero.dynamicWords;
-    dynWidthCache[lang] = measureMaxWidth(dyn, words);
-  }
-  const reserved = dynWidthCache[lang];
-  dyn.style.width = reserved + 'px';
-  dyn.style.minWidth = reserved + 'px';
-
-  // Si prefix + dinàmic no caben, força "stack"
   const container = head.closest('.hero-inner') || head.parentElement;
   const avail = container?.clientWidth || head.clientWidth || window.innerWidth;
   const cs = getComputedStyle(head);
   const gapPx = parseFloat(cs.gap) || parseFloat(cs.columnGap) || 8;
-  const total = pre.getBoundingClientRect().width + reserved + gapPx;
-  const needStack = total > avail * 0.98;
+  const prefixWidth = pre.getBoundingClientRect().width; // Lectura de geometria
+
+  // 2. LÒGICA (FASE PROCESS)
+  head.classList.toggle('headline--stack', isNarrow);
+  let reserved = 0;
+  let needStack = isNarrow;
+
+  if(!isNarrow){
+    if(!dynWidthCache[lang]){
+      const words = I18N[lang].hero.dynamicWords;
+      dynWidthCache[lang] = measureMaxWidth(dyn, words);
+    }
+    reserved = dynWidthCache[lang];
+    const total = prefixWidth + reserved + gapPx;
+    needStack = total > avail * 0.98;
+  }
+  
   head.classList.toggle('headline--stack', needStack);
 
+  // 3. ESCRIPTURA DEL DOM (FASE WRITE)
   if(needStack){
-    dyn.style.width='100%'; dyn.style.minWidth='0';
+    dyn.style.width='100%'; 
+    dyn.style.minWidth='0';
+  } else {
+    // Aquestes línies de codi són les que poden haver provocat la redistribució forçada 
+    // en la versió anterior si es combinaven amb re-lectures immediates.
+    // L'hem aïllat al final.
+    dyn.style.width = reserved + 'px';
+    dyn.style.minWidth = reserved + 'px';
   }
 }
 
@@ -241,6 +268,8 @@ async function startHeadline(){
   const prefix = $('.headline-prefix'); const dyn = $('#titleDynamic');
   if(prefix) scrambleOnce(prefix);
   if(!dyn) return;
+  // S'executa després de load/fontsReady al preloader.
+  // Es manté la revisió aquí per si s'executa per canvi d'idioma.
   try{ if(document.fonts && document.fonts.ready) await document.fonts.ready; }catch(e){}
   await setDynamicWidth(currentLang);
   typeCycle(dyn, I18N[currentLang].hero.dynamicWords);
@@ -300,7 +329,8 @@ window.addEventListener('DOMContentLoaded', ()=> applyI18n(currentLang));
 
 // Reajust si canvia la mida de finestra (o canvia la presència de barra scroll)
 let resizeTimer;
-window.addEventListener('resize', ()=> { clearTimeout(resizeTimer); resizeTimer = setTimeout(()=> setDynamicWidth(currentLang), 120); });
+// Opt: Reducció del debounce per a millor UX/rapidesa sense canvis grans a l'UX
+window.addEventListener('resize', ()=> { clearTimeout(resizeTimer); resizeTimer = setTimeout(()=> setDynamicWidth(currentLang), 50); });
 
 /* ========================================================================== */
 /* Header / Nav */
@@ -321,20 +351,27 @@ function toggleNav(open){
 hamburger?.addEventListener('click', ()=> toggleNav());
 navDim?.addEventListener('click', ()=> toggleNav(false));
 document.addEventListener('keydown', e => { if(e.key==='Escape') toggleNav(false); });
-document.addEventListener('click', (e)=>{ if(!body.classList.contains('nav-open')) return; if(!e.target.closest('.nav-overlay') && !e.target.closest('#hamburger')) toggleNav(false); });
+document.addEventListener('click', (e)=>{ 
+  if(!body.classList.contains('nav-open')) return; 
+  // Opt: Més robust per detectar clics fora del menú
+  if(!e.target.closest('.nav-overlay, #hamburger')) toggleNav(false); 
+});
 
 /* ========================================================================== */
 /* Smooth scroll amb offset de la capçalera */
 /* ========================================================================== */
 function smoothScrollTo(target){
   const headerH = $('.site-header')?.offsetHeight || 0;
+  // Opt: Ús de scrollBy/scrollTo si són suportats, amb fallback
   const top = (typeof target === 'number') ? target : target.getBoundingClientRect().top + window.scrollY - headerH - 12;
+  
+  // Opt: Es pot eliminar el setTimeout per a un scroll més immediat si 'smooth' és suportat
   window.scrollTo({ top, behavior:'smooth' });
 }
 document.addEventListener('click', (e)=>{
   const link = e.target.closest('a[href^="#"], .scroll-link'); if(!link) return;
   const href = link.getAttribute('href') || ''; if(!href.startsWith('#')) return;
-  const tgt = document.querySelector(href); if(!tgt) return;
+  const tgt = $(href); if(!tgt) return; // Opt: Utilitzar la funció $
   e.preventDefault(); toggleNav(false); smoothScrollTo(tgt);
 }, true);
 
@@ -354,42 +391,79 @@ function initReveals(){
     $('.method-visual')
   ].filter(Boolean);
 
+  // Opt: Optimització de la Intersecció
+  if (!window.IntersectionObserver || prefersReduced) {
+     targets.forEach(el=> { el.style.opacity='1'; el.style.transform='none'; el.classList.add('in'); });
+     return;
+  }
+  
   targets.forEach(el=>{ el.classList.add('reveal'); el.style.opacity='0'; el.style.transform='translateY(24px)'; });
   const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); e.target.style.transition='opacity .7s ease, transform .7s ease'; e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target); } });
+    entries.forEach(e=>{ 
+      if(e.isIntersecting){ 
+        e.target.classList.add('in'); 
+        e.target.style.transition='opacity .7s ease, transform .7s ease'; 
+        e.target.style.opacity='1'; 
+        e.target.style.transform='none'; 
+        io.unobserve(e.target); 
+      } 
+    });
   },{ threshold:0.15 });
   targets.forEach(el=> io.observe(el));
 
   // Glow dinàmic als serveis (conic + blur)
   const cards = $$('.service-card');
+  let lastScrollY = 0;
+  let ticking = false;
+
   function updateGlow(){
-    const vh = window.innerHeight;
-    cards.forEach(card=>{
-      const r = card.getBoundingClientRect();
-      const prog = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
-      card.style.setProperty('--glow-rot', (prog*360)+'deg');
-      card.style.setProperty('--glow-opacity', (0.12 + prog*0.18).toFixed(2));
-    });
+    if(!ticking){
+      requestAnimationFrame(()=>{
+        const vh = window.innerHeight;
+        cards.forEach(card=>{
+          const r = card.getBoundingClientRect();
+          const prog = Math.max(0, Math.min(1, (vh - r.top) / (vh + r.height)));
+          // Opt: Usem transformacions CSS (rotació/opacitat) que són més ràpides que altres propietats (CSS will-change)
+          card.style.setProperty('--glow-rot', (prog*360)+'deg');
+          card.style.setProperty('--glow-opacity', (0.12 + prog*0.18).toFixed(2));
+        });
+        ticking = false;
+      });
+      ticking = true;
+    }
   }
+
   updateGlow();
-  window.addEventListener('scroll', ()=> requestAnimationFrame(updateGlow), { passive:true });
-  window.addEventListener('resize', ()=> requestAnimationFrame(updateGlow));
+  window.addEventListener('scroll', updateGlow, { passive:true });
+  window.addEventListener('resize', updateGlow);
 }
-initReveals();
+// Opt: cridar només al final del DOMContentLoaded per assegurar que es pot observar tot
+// initReveals();
 
 /* ========================================================================== */
 /* Tilt lleuger (sense llibreria) */
 /* ========================================================================== */
 (function initTilt(){
+  if(prefersReduced) return; // Desactiva si l'usuari prefereix moviment reduït
   $$('.tilt').forEach(el=>{
     el.style.transformStyle = 'preserve-3d';
-    el.addEventListener('mousemove', (e)=>{
-      const r = el.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width/2)) / r.width;
-      const dy = (e.clientY - (r.top + r.height/2)) / r.height;
-      el.style.transform = `rotateX(${-dy*6}deg) rotateY(${dx*8}deg)`;
+    // Opt: Ús de requestAnimationFrame per a les animacions de mousemove
+    let rafTilt;
+    el.addEventListener('mousemove',(e)=>{
+      cancelAnimationFrame(rafTilt);
+      rafTilt = requestAnimationFrame(()=>{
+        const r = el.getBoundingClientRect();
+        const dx = (e.clientX - (r.left + r.width/2)) / r.width;
+        const dy = (e.clientY - (r.top + r.height/2)) / r.height;
+        el.style.transform = `rotateX(${-dy*6}deg) rotateY(${dx*8}deg)`;
+      });
     });
-    el.addEventListener('mouseleave', ()=> el.style.transform = 'rotateX(0) rotateY(0)');
+    el.addEventListener('mouseleave',()=> {
+      cancelAnimationFrame(rafTilt);
+      el.style.transition = 'transform .2s ease-out';
+      el.style.transform = 'rotateX(0) rotateY(0)';
+    });
+    el.addEventListener('mouseenter',()=> el.style.transition = 'none'); // Desactiva transició en moure's
   });
 })();
 
@@ -401,16 +475,20 @@ initReveals();
   const track = root.querySelector('.swiper-wrapper');
   const prev = root.querySelector('.swiper-button-prev');
   const next = root.querySelector('.swiper-button-next');
-  const step = ()=> (track.querySelector('.swiper-slide')?.getBoundingClientRect().width || 320) + 18;
+  
+  // Funció per calcular la mida d'un pas
+  const step = ()=> (track.querySelector('.swiper-slide')?.offsetWidth || 320) + 18; // Usem offsetWidth (no llegeix estils)
 
   next.addEventListener('click', ()=> track.scrollBy({ left: step(), behavior:'smooth' }));
   prev.addEventListener('click', ()=> track.scrollBy({ left: -step(), behavior:'smooth' }));
 
   if(!prefersReduced){
     let autoplay = setInterval(()=> {
+      // Opt: Ús de clientWidth i scrollWidth, que són lectures ràpides.
       track.scrollBy({ left: step(), behavior:'smooth' });
       if(track.scrollLeft + track.clientWidth >= track.scrollWidth - 5){ track.scrollTo({ left:0, behavior:'smooth' }); }
     }, 3000);
+    // Opt: Evitar l'autoplay si l'usuari interactua
     ['pointerdown','wheel','touchstart'].forEach(ev=> track.addEventListener(ev, ()=> { clearInterval(autoplay); }, { once:true, passive:true }));
   }
 })();
@@ -442,22 +520,40 @@ function ensureStatusEl(){
   return el;
 }
 
+// ÚS DE TRANSICIONS EN JS QUE NO CAUSEN REDISTRIBUCIÓ FORÇADA
 function expand(el){
   el.classList.remove('is-collapsed'); el.style.overflow='hidden';
-  el.style.height='auto'; const h = el.scrollHeight+'px'; el.style.height='0px';
-  requestAnimationFrame(()=>{ el.style.transition='height .45s cubic-bezier(.2,.8,.2,1), opacity .25s ease'; el.style.height=h; el.style.opacity='1'; });
+  // LECTURA (1): Només es llegeix una vegada el scrollHeight
+  const h = el.scrollHeight+'px'; 
+  el.style.height='0px'; // ESCRIPTURA (1): Inici d'animació
+  
+  requestAnimationFrame(()=>{ 
+    // ESCRIPTURA (2): Transició
+    el.style.transition='height .45s cubic-bezier(.2,.8,.2,1), opacity .25s ease'; 
+    el.style.height=h; 
+    el.style.opacity='1'; 
+  });
   el.addEventListener('transitionend',()=>{ el.style.height='auto'; el.style.overflow='visible'; el.style.transition=''; },{once:true});
 }
 function collapse(el){
-  el.style.overflow='hidden'; el.style.height = el.scrollHeight+'px';
-  requestAnimationFrame(()=>{ el.style.transition='height .35s ease, opacity .2s ease'; el.style.height='0px'; el.style.opacity='0'; });
+  el.style.overflow='hidden'; 
+  // LECTURA (1): Només es llegeix una vegada el scrollHeight
+  el.style.height = el.scrollHeight+'px';
+  
+  requestAnimationFrame(()=>{ 
+    // ESCRIPTURA (1): Transició a 0
+    el.style.transition='height .35s ease, opacity .2s ease'; 
+    el.style.height='0px'; 
+    el.style.opacity='0'; 
+  });
   el.addEventListener('transitionend',()=>{ el.classList.add('is-collapsed'); el.style.height=''; el.style.transition=''; },{once:true});
 }
 quoteToggle?.addEventListener('click', ()=>{
   const isCollapsed = quoteForm.classList.contains('is-collapsed');
   quoteToggle.setAttribute('aria-expanded', String(isCollapsed));
-  quoteToggle.textContent = isCollapsed ? t('quote.close') : t('quote.open');
-  if(isCollapsed){ expand(quoteForm); smoothScrollTo(quoteForm); } else { collapse(quoteForm); }
+  quoteToggle.textContent = isCollapsed ? t('quote.open') : t('quote.close');
+  // Opt: smoothScrollTo al formulari o al toggle quan es tanca
+  if(isCollapsed){ expand(quoteForm); smoothScrollTo(quoteForm); } else { collapse(quoteForm); smoothScrollTo(quoteToggle); } 
 });
 chipsType.forEach(chip=> chip.addEventListener('click',()=>{ chipsType.forEach(c=>c.classList.remove('selected')); chip.classList.add('selected'); formState.type = chip.dataset.type; }));
 chipsBudget.forEach(chip=> chip.addEventListener('click',()=>{ chipsBudget.forEach(c=>c.classList.remove('selected')); chip.classList.add('selected'); formState.budget = chip.dataset.budget; }));
@@ -465,7 +561,12 @@ chipsSpeed.forEach(chip=> chip.addEventListener('click',()=>{ chipsSpeed.forEach
 $$('.view-project').forEach(btn => btn.addEventListener('click', (e)=>{
   const name = e.currentTarget.dataset.project || '';
   if(quoteForm.classList.contains('is-collapsed')) expand(quoteForm);
-  $('#desc').value = `${t('quote.prefill')} ${name}.`; quoteToggle.textContent = t('quote.close'); smoothScrollTo(quoteForm);
+  // Opt: Ús de requestAnimationFrame per a la modificació visual
+  requestAnimationFrame(()=>{
+    $('#desc').value = `${t('quote.prefill')} ${name}.`; 
+    quoteToggle.textContent = t('quote.close'); 
+    smoothScrollTo(quoteForm);
+  });
 }));
 
 quoteForm?.addEventListener('submit', async (e)=>{
@@ -497,6 +598,7 @@ quoteForm?.addEventListener('submit', async (e)=>{
 
   // Si hi ha endpoint -> fetch; si no, mailto fallback
   if(FORM_ENDPOINT){
+    // ESCRIPTURA (1): Deshabilita botó.
     btn.disabled = true; btn.style.opacity = .7;
     msgEl.textContent = 'Enviando…';
     msgEl.style.color = 'inherit';
@@ -535,6 +637,7 @@ quoteForm?.addEventListener('submit', async (e)=>{
       msgEl.textContent = 'No se pudo enviar. Prueba de nuevo o escríbeme a hello@utilix.dev';
       msgEl.style.color = 'var(--warn)';
     }finally{
+      // ESCRIPTURA (2): Habilita botó. Assegurem que l'escriptura està fora de qualsevol lectura.
       btn.disabled = false; btn.style.opacity = 1;
     }
   }else{
@@ -547,11 +650,28 @@ quoteForm?.addEventListener('submit', async (e)=>{
 /* ========================================================================== */
 /* Magnètic suau als botons */
 /* ========================================================================== */
-$$('[data-magnetic]').forEach(el=>{
-  const strength = 16;
-  el.addEventListener('mousemove',(e)=>{
-    const r = el.getBoundingClientRect();
-    el.style.transform = `translate(${(e.clientX-(r.left+r.width/2))/strength}px, ${(e.clientY-(r.top+r.height/2))/strength}px)`;
+(function initMagnetic(){
+  if(prefersReduced) return; // Desactiva si l'usuari prefereix moviment reduït
+  $$('[data-magnetic]').forEach(el=>{
+    const strength = 16;
+    let rafMagnetic;
+    el.addEventListener('mousemove',(e)=>{
+      cancelAnimationFrame(rafMagnetic);
+      // Opt: Ús de requestAnimationFrame
+      rafMagnetic = requestAnimationFrame(()=>{
+        const r = el.getBoundingClientRect(); // LECTURA
+        // ESCRIPTURA (transform)
+        el.style.transform = `translate(${(e.clientX-(r.left+r.width/2))/strength}px, ${(e.clientY-(r.top+r.height/2))/strength}px)`;
+      });
+    });
+    el.addEventListener('mouseleave',()=>{ 
+      cancelAnimationFrame(rafMagnetic);
+      el.style.transition = 'transform .2s ease-out'; // Opt: Suavitza el retorn
+      el.style.transform='translate(0,0)'; 
+    });
+    el.addEventListener('mouseenter',()=> el.style.transition = 'none'); // Desactiva transició en moure's
   });
-  el.addEventListener('mouseleave',()=>{ el.style.transform='translate(0,0)'; });
-});
+})();
+
+// Opt: Executar initReveals al final del document per assegurar que es pot observar tot
+window.addEventListener('DOMContentLoaded', initReveals);
