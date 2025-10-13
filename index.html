@@ -1,576 +1,570 @@
 <!doctype html>
 <html lang="es">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#ffffff" />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
 
-    <title>UtiLiX.tech — Diseño & Desarrollo Web a Medida (Rápido, SEO & Accesible)</title>
-    <meta name="description" content="UtiLiX.tech: diseño y desarrollo web a medida. HTML, CSS, JS, front-end y back-end, rendimiento 90+ CWV, accesibilidad AA/AAA y SEO técnico listo." />
+    <title>UtiLiX.tech — Diseño & Desarrollo Web a Medida (Rápido, SEO & Accesible)</title>
+    <meta name="description" content="UtiLiX.tech: diseño y desarrollo web a medida. HTML, CSS, JS, front-end y back-end, rendimiento 90+ CWV, accesibilidad AA/AAA y SEO técnico listo." />
 
-    <link rel="canonical" href="https://utilix.tech/" />
+    <link rel="canonical" href="https://utilix.tech/" />
 
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-    <link rel="alternate icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png" sizes="180x180">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
-    <style>
-        /* ======= CSS CRÍTIC INJECTAT PER A LA PART SUPERIOR (HEADER & HERO) ======= */
-        /* Reset & variables (LIGHT ONLY) */
-        *,
-        *::before,
-        *::after { box-sizing: border-box; }
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png" sizes="180x180">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap">
+    <style>
+        /* ======= CSS CRÍTIC INJECTAT PER A LA PART SUPERIOR (HEADER & HERO) ======= */
+        /* Reset & variables (LIGHT ONLY) */
+        *,
+        *::before,
+        *::after { box-sizing: border-box; }
 
-        :root{
-            --bg:#f7f9fc;
-            --bg-2:#ffffff;
-            --surface:rgba(0,0,0,.04);
-            --surface-2:rgba(0,0,0,.12);
-            --text:#0c0f1a;
-            --muted:#525a7a;
-            --accent:#7c5cff;
-            --accent-2:#06d6a0;
-            --accent-3:#00bcd4;
-            --warn:#ff6b6b;
+        :root{
+            --bg:#f7f9fc;
+            --bg-2:#ffffff;
+            --surface:rgba(0,0,0,.04);
+            --surface-2:rgba(0,0,0,.12);
+            --text:#0c0f1a;
+            --muted:#525a7a;
+            --accent:#7c5cff;
+            --accent-2:#06d6a0;
+            --accent-3:#00bcd4;
+            --warn:#ff6b6b;
 
-            --shadow-1:0 10px 30px rgba(0,0,0,.12);
-            --radius:16px;
-            --maxw:1200px;
+            --shadow-1:0 10px 30px rgba(0,0,0,.12);
+            --radius:16px;
+            --maxw:1200px;
 
-            --font-display:"Space Grotesk",system-ui,sans-serif;
-            --font-body:"Plus Jakarta Sans",system-ui,sans-serif;
-        }
+            --font-display:"Space Grotesk",system-ui,sans-serif;
+            --font-body:"Plus Jakarta Sans",system-ui,sans-serif;
+        }
 
-        html{
-            scroll-behavior:smooth;
-            scrollbar-gutter: stable both-edges;
-        }
-        html,body{ height:100%; background:var(--bg); color:var(--text); }
-        body{ font-family:var(--font-body); line-height:1.5; overflow-x:hidden; }
-        a{ color:inherit; text-decoration:none; }
-        .container{ width:min(92vw,var(--maxw)); margin-inline:auto; }
-        .section{ padding:clamp(64px,8vw,120px) 0; position:relative; }
+        html{
+            scroll-behavior:smooth;
+            scrollbar-gutter: stable both-edges;
+        }
+        html,body{ height:100%; background:var(--bg); color:var(--text); }
+        body{ font-family:var(--font-body); line-height:1.5; overflow-x:hidden; }
+        a{ color:inherit; text-decoration:none; }
+        .container{ width:min(92vw,var(--maxw)); margin-inline:auto; }
+        .section{ padding:clamp(64px,8vw,120px) 0; position:relative; }
 
-        /* Global texture */
-        body::after{
-            content:""; position:fixed; inset:-40% -40% -40% -40%;
-            background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
-            background-size:3px 3px; opacity:.07; pointer-events:none; z-index:1;
-        }
-        .grad-text{
-            background:linear-gradient(90deg,var(--accent),var(--accent-2));
-            -webkit-background-clip:text; background-clip:text; color:transparent;
-        }
+        /* Global texture */
+        body::after{
+            content:""; position:fixed; inset:-40% -40% -40% -40%;
+            background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
+            background-size:3px 3px; opacity:.07; pointer-events:none; z-index:1;
+        }
+        .grad-text{
+            background:linear-gradient(90deg,var(--accent),var(--accent-2));
+            -webkit-background-clip:text; background-clip:text; color:transparent;
+        }
 
-        /* Buttons (Només els que es veuen a l'Hero) */
-        .btn{
-            display:inline-flex; align-items:center; gap:10px;
-            padding:14px 18px; border-radius:999px; font-weight:800; letter-spacing:.2px;
-            border:1px solid transparent; background:var(--accent); color:#fff; box-shadow:var(--shadow-1);
-            transition:transform .2s ease, box-shadow .2s ease, background .3s ease, border-color .3s ease;
-            cursor:pointer;
-        }
-        .btn.primary{ background:linear-gradient(135deg,var(--accent),#9f7bff); }
-        .btn.outline{ background:transparent; border:1px solid var(--accent); color:var(--text); }
-        .btn:hover{ transform:translateY(-2px); }
-        .cta{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:10px; }
+        /* Buttons (Només els que es veuen a l'Hero) */
+        .btn{
+            display:inline-flex; align-items:center; gap:10px;
+            padding:14px 18px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+            border:1px solid transparent; background:var(--accent); color:#fff; box-shadow:var(--shadow-1);
+            transition:transform .2s ease, box-shadow .2s ease, background .3s ease, border-color .3s ease;
+            cursor:pointer;
+        }
+        .btn.primary{ background:linear-gradient(135deg,var(--accent),#9f7bff); }
+        .btn.outline{ background:transparent; border:1px solid var(--accent); color:var(--text); }
+        .btn:hover{ transform:translateY(-2px); }
+        .cta{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:10px; }
 
 
-        /* Header & Nav */
-        .site-header{
-            position:fixed; inset:0 0 auto 0; z-index:50;
-            background:linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,0));
-            backdrop-filter:blur(6px);
-        }
-        .header-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; padding:14px 0; }
-        .brand{ font-weight:900; letter-spacing:.5px; font-size:1.1rem; opacity:.95; font-family:var(--font-display); }
-        .brand span{ font-weight:1000; background:linear-gradient(90deg,#7c5cff,#06d6a0); -webkit-background-clip:text; background-clip:text; color:transparent;font-size:1.5rem }
-        .header-cta{ display:flex; gap:10px; justify-self:end; align-items:center; }
-        .lang-switch{ display:inline-flex; gap:6px; padding:4px; border-radius:999px; border:1px solid var(--surface-2); background:#fff; }
-        .lang{ border:0; background:transparent; padding:6px 10px; border-radius:999px; font-weight:900; color:var(--muted); cursor:pointer; font-family:var(--font-display); }
-        .lang.is-active{ background:rgba(0,0,0,.06); color:#000; border:1px solid rgba(0,0,0,.12); }
-        .hamburger{
-            justify-self:center; width:56px; height:56px; border-radius:50%;
-            border:1px solid var(--surface-2); background:#fff; box-shadow:var(--shadow-1);
-            display:grid; place-items:center; cursor:pointer; position:relative; overflow:hidden;
-        }
-        .hamburger-label{ position:absolute; inset:auto 0 -18px 0; text-align:center; font-size:.7rem; color:var(--muted); }
-        .hamburger-box{ display:grid; place-items:center; width:28px; height:28px; }
-        .hamburger-inner,.hamburger-inner::before,.hamburger-inner::after{
-            content:""; display:block; width:24px; height:2px; background:#111; border-radius:2px;
-            transition:transform .35s ease, opacity .35s ease;
-        }
-        .hamburger-inner::before{ transform:translateY(-7px); }
-        .hamburger-inner::after{ transform:translateY(7px); }
-        /* Hero */
-        .hero{ min-height:100svh; display:grid; place-items:center; padding-top:110px; position:relative; }
-        #hero-bg{
-            position:absolute; inset:0; z-index:-1;
-            background:linear-gradient(180deg,#eef2ff 0%, #ffffff 60%);
-        }
-        #hero-bg::before, #hero-bg::after{
-            content:""; position:absolute; width:60vw; height:60vw; border-radius:50%; filter:blur(60px); opacity:.55; pointer-events:none;
-        }
-        #hero-bg::before{ top:-20%; left:-10%; background:radial-gradient(circle at 40% 40%, rgba(124,92,255,.25), transparent 60%); animation:float1 18s ease-in-out infinite; }
-        #hero-bg::after { bottom:-22%; right:-12%; background:radial-gradient(circle at 60% 60%, rgba(6,214,160,.20), transparent 60%); animation:float2 22s ease-in-out infinite; }
-        @keyframes float1{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(0,-20px) scale(1.05) } }
-        @keyframes float2{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(0,20px) scale(1.05) } }
-        .hero-inner{ text-align:center; display:grid; gap:20px; place-items:center; }
-        .headline{
-            font-family:var(--font-display);
-            font-weight:700;
-            font-size:clamp(42px,7vw,88px);
-            line-height:1.04;
-            letter-spacing:.2px;
-            display:flex;
-            align-items:baseline;
-            justify-content:center;
-            gap:.4ch;
-            flex-wrap:nowrap;
-            text-align:center;
-            max-width:min(92vw, var(--maxw));
-            margin-inline:auto;
-        }
-        .headline-prefix{ display:inline-block; margin-right:0; }
-        .headline-dynamic{
-            display:inline-block;
-            white-space:nowrap;
-            min-height:1em;
-            max-width:100%;
-            will-change:contents;
-        }
-        @media (max-width:700px){
-            .headline{ flex-direction:column; gap:6px; }
-            .headline-dynamic{ width:100% !important; min-width:0 !important; text-align:center; }
-        }
-        .subhead{ color:var(--muted); max-width:820px; margin:0 auto; }
-        .scroll-hint{ display:inline-grid; justify-items:center; gap:8px; margin-top:6px; color:var(--muted); }
-        .scroll-hint .mouse{ width:22px; height:34px; border:2px solid var(--muted); border-radius:14px; position:relative; }
-        .scroll-hint .mouse::after{ content:""; position:absolute; top:6px; left:50%; width:2px; height:6px; background:var(--muted); transform:translateX(-50%); border-radius:2px; animation:wheel 1.6s infinite; }
-        @keyframes wheel{ 0%{opacity:0; transform:translate(-50%,0)} 40%{opacity:1} 100%{opacity:0; transform:translate(-50%,8px)} }
-        /* Fi del CSS Crític */
-    </style>
+        /* Header & Nav */
+        .site-header{
+            position:fixed; inset:0 0 auto 0; z-index:50;
+            background:linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,0));
+            backdrop-filter:blur(6px);
+        }
+        .header-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; padding:14px 0; }
+        .brand{ font-weight:900; letter-spacing:.5px; font-size:1.1rem; opacity:.95; font-family:var(--font-display); }
+        .brand span{ font-weight:1000; background:linear-gradient(90deg,#7c5cff,#06d6a0); -webkit-background-clip:text; background-clip:text; color:transparent;font-size:1.5rem }
+        .header-cta{ display:flex; gap:10px; justify-self:end; align-items:center; }
+        .lang-switch{ display:inline-flex; gap:6px; padding:4px; border-radius:999px; border:1px solid var(--surface-2); background:#fff; }
+        .lang{ border:0; background:transparent; padding:6px 10px; border-radius:999px; font-weight:900; color:var(--muted); cursor:pointer; font-family:var(--font-display); }
+        .lang.is-active{ background:rgba(0,0,0,.06); color:#000; border:1px solid rgba(0,0,0,.12); }
+        .hamburger{
+            justify-self:center; width:56px; height:56px; border-radius:50%;
+            border:1px solid var(--surface-2); background:#fff; box-shadow:var(--shadow-1);
+            display:grid; place-items:center; cursor:pointer; position:relative; overflow:hidden;
+        }
+        .hamburger-label{ position:absolute; inset:auto 0 -18px 0; text-align:center; font-size:.7rem; color:var(--muted); }
+        .hamburger-box{ display:grid; place-items:center; width:28px; height:28px; }
+        .hamburger-inner,.hamburger-inner::before,.hamburger-inner::after{
+            content:""; display:block; width:24px; height:2px; background:#111; border-radius:2px;
+            transition:transform .35s ease, opacity .35s ease;
+        }
+        .hamburger-inner::before{ transform:translateY(-7px); }
+        .hamburger-inner::after{ transform:translateY(7px); }
+        /* Hero */
+        .hero{ min-height:100svh; display:grid; place-items:center; padding-top:110px; position:relative; }
+        #hero-bg{
+            position:absolute; inset:0; z-index:-1;
+            background:linear-gradient(180deg,#eef2ff 0%, #ffffff 60%);
+        }
+        #hero-bg::before, #hero-bg::after{
+            content:""; position:absolute; width:60vw; height:60vw; border-radius:50%; filter:blur(60px); opacity:.55; pointer-events:none;
+        }
+        #hero-bg::before{ top:-20%; left:-10%; background:radial-gradient(circle at 40% 40%, rgba(124,92,255,.25), transparent 60%); animation:float1 18s ease-in-out infinite; }
+        #hero-bg::after { bottom:-22%; right:-12%; background:radial-gradient(circle at 60% 60%, rgba(6,214,160,.20), transparent 60%); animation:float2 22s ease-in-out infinite; }
+        @keyframes float1{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(0,-20px) scale(1.05) } }
+        @keyframes float2{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(0,20px) scale(1.05) } }
+        .hero-inner{ text-align:center; display:grid; gap:20px; place-items:center; }
+        .headline{
+            font-family:var(--font-display);
+            font-weight:700;
+            font-size:clamp(42px,7vw,88px);
+            line-height:1.04;
+            letter-spacing:.2px;
+            display:flex;
+            align-items:baseline;
+            justify-content:center;
+            gap:.4ch;
+            flex-wrap:nowrap;
+            text-align:center;
+            max-width:min(92vw, var(--maxw));
+            margin-inline:auto;
+        }
+        .headline-prefix{ display:inline-block; margin-right:0; }
+        .headline-dynamic{
+            display:inline-block;
+            white-space:nowrap;
+            min-height:1em;
+            max-width:100%;
+            will-change:contents;
+        }
+        @media (max-width:700px){
+            .headline{ flex-direction:column; gap:6px; }
+            .headline-dynamic{ width:100% !important; min-width:0 !important; text-align:center; }
+        }
+        .subhead{ color:var(--muted); max-width:820px; margin:0 auto; }
+        .scroll-hint{ display:inline-grid; justify-items:center; gap:8px; margin-top:6px; color:var(--muted); }
+        .scroll-hint .mouse{ width:22px; height:34px; border:2px solid var(--muted); border-radius:14px; position:relative; }
+        .scroll-hint .mouse::after{ content:""; position:absolute; top:6px; left:50%; width:2px; height:6px; background:var(--muted); transform:translateX(-50%); border-radius:2px; animation:wheel 1.6s infinite; }
+        @keyframes wheel{ 0%{opacity:0; transform:translate(-50%,0)} 40%{opacity:1} 100%{opacity:0; transform:translate(-50%,8px)} }
+        /* Fi del CSS Crític */
+    </style>
 
-    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="style.css"></noscript>
+    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'" />
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
 
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="UtiLiX.tech">
-    <meta property="og:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
-    <meta property="og:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
-    <meta property="og:url" content="https://utilix.tech/">
-    <meta property="og:image" content="https://utilix.tech/og-image.jpg">
-    <meta property="og:image:alt" content="UtiLiX.tech — Diseño & Desarrollo Web">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="UtiLiX.tech">
+    <meta property="og:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
+    <meta property="og:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
+    <meta property="og:url" content="https://utilix.tech/">
+    <meta property="og:image" content="https://utilix.tech/og-image.jpg">
+    <meta property="og:image:alt" content="UtiLiX.tech — Diseño & Desarrollo Web">
 
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
-    <meta name="twitter:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
-    <meta name="twitter:image" content="https://utilix.tech/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
+    <meta name="twitter:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
+    <meta name="twitter:image" content="https://utilix.tech/og-image.jpg">
 
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "UtiLiX.tech",
-        "url": "https://utilix.tech/",
-        "logo": "https://utilix.tech/favicon.png",
-        "email": "info@utilixtech.com",
-        "sameAs": [
-            "mailto:info@utilixtech.com",
-            "https://www.linkedin.com",
-            "https://github.com"
-        ]
-    }
-    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "UtiLiX.tech",
+        "url": "https://utilix.tech/",
+        "logo": "https://utilix.tech/favicon.png",
+        "email": "info@utilixtech.com",
+        "sameAs": [
+            "mailto:info@utilixtech.com",
+            "https://www.linkedin.com",
+            "https://github.com"
+        ]
+    }
+    </script>
 </head>
 <body class="no-js" data-lang="es">
-    
-  <header class="site-header" aria-label="Cabecera">
-    <div class="container header-inner">
-      <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
+  
+  <header class="site-header" aria-label="Cabecera">
+    <div class="container header-inner">
+      <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
 
-      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" type="button">
-        <span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
-        <span class="hamburger-label" data-i18n="ui.menu">Menú</span>
-      </button>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" type="button">
+        <span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
+        <span class="hamburger-label" data-i18n="ui.menu">Menú</span>
+      </button>
 
-      <div class="header-cta">
-        <div class="lang-switch" role="group" aria-label="Selector de idioma">
-          <button class="lang is-active" data-lang="es" aria-pressed="true" type="button">ES</button>
-          <button class="lang" data-lang="ca" aria-pressed="false" type="button">CA</button>
-          <button class="lang" data-lang="en" aria-pressed="false" type="button">EN</button>
-        </div>
-        <a href="#quote" class="btn ghost small only-desktop scroll-link" data-magnetic data-i18n="cta.quote">Pedir Propuesta</a>
-      </div>
-    </div>
+      <div class="header-cta">
+        <div class="lang-switch" role="group" aria-label="Selector de idioma">
+          <button class="lang is-active" data-lang="es" aria-pressed="true" type="button">ES</button>
+          <button class="lang" data-lang="ca" aria-pressed="false" type="button">CA</button>
+          <button class="lang" data-lang="en" aria-pressed="false" type="button">EN</button>
+        </div>
+        <a href="#quote" class="btn ghost small only-desktop scroll-link" data-magnetic data-i18n="cta.quote">Pedir Propuesta</a>
+      </div>
+    </div>
 
-    <div class="nav-dim" id="navDim" aria-hidden="true"></div>
-    <nav id="nav" class="nav-overlay" aria-hidden="true">
-      <ul class="nav-list">
-        <li><a href="#serveis" class="nav-link scroll-link" data-i18n="nav.services">Servicios</a></li>
-        <li><a href="#projectes" class="nav-link scroll-link" data-i18n="nav.projects">Proyectos</a></li>
-        <li><a href="#metodologia" class="nav-link scroll-link" data-i18n="nav.method">Método</a></li>
-        <li><a href="#quote" class="nav-link scroll-link" data-i18n="nav.quote">Propuesta</a></li>
-        <li><a href="#contacte" class="nav-link scroll-link" data-i18n="nav.contact">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+    <div class="nav-dim" id="navDim" aria-hidden="true"></div>
+    <nav id="nav" class="nav-overlay" aria-hidden="true">
+      <ul class="nav-list">
+        <li><a href="#serveis" class="nav-link scroll-link" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="#projectes" class="nav-link scroll-link" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#metodologia" class="nav-link scroll-link" data-i18n="nav.method">Método</a></li>
+        <li><a href="#quote" class="nav-link scroll-link" data-i18n="nav.quote">Propuesta</a></li>
+        <li><a href="#contacte" class="nav-link scroll-link" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <section id="hero" class="section hero" aria-label="Hero">
-    <div id="hero-bg" aria-hidden="true"></div>
+  <section id="hero" class="section hero" aria-label="Hero">
+    <div id="hero-bg" aria-hidden="true"></div>
 
-    <div class="container hero-inner">
-      <h1 class="headline" id="headline">
-        <span class="headline-prefix" data-i18n="hero.title_prefix">Diseño & Desarrollo</span>
-        <span id="titleDynamic" class="headline-dynamic grad-text" aria-live="polite">web a medida</span>
-      </h1>
-      <p class="subhead" data-i18n="hero.subhead">
-        HTML, CSS, JS, SEO, mantenimiento y back-end. Rendimiento, accesibilidad y magia visual en cada píxel.
-      </p>
-      <div class="cta">
-        <a href="#serveis" class="btn primary scroll-link" data-magnetic><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-i18n="cta.services">Descubre los servicios</span></a>
-        <a href="#projectes" class="btn outline scroll-link" data-magnetic><i class="fa-solid fa-rocket" aria-hidden="true"></i> <span data-i18n="cta.projects">Ver proyectos</span></a>
-        <a href="#quote" class="btn outline scroll-link" data-magnetic><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> <span data-i18n="cta.quote">Pedir propuesta</span></a>
-      </div>
+    <div class="container hero-inner">
+      <h1 class="headline" id="headline">
+        <span class="headline-prefix" data-i18n="hero.title_prefix">Diseño & Desarrollo</span>
+        <span id="titleDynamic" class="headline-dynamic grad-text" aria-live="polite">web a medida</span>
+      </h1>
+      <p class="subhead" data-i18n="hero.subhead">
+        HTML, CSS, JS, SEO, mantenimiento y back-end. Rendimiento, accesibilidad y magia visual en cada píxel.
+      </p>
+      <div class="cta">
+        <a href="#serveis" class="btn primary scroll-link" data-magnetic><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-i18n="cta.services">Descubre los servicios</span></a>
+        <a href="#projectes" class="btn outline scroll-link" data-magnetic><i class="fa-solid fa-rocket" aria-hidden="true"></i> <span data-i18n="cta.projects">Ver proyectos</span></a>
+        <a href="#quote" class="btn outline scroll-link" data-magnetic><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> <span data-i18n="cta.quote">Pedir propuesta</span></a>
+      </div>
 
-      <a href="#serveis" class="scroll-hint scroll-link" aria-label="Haz scroll para continuar">
-        <span class="mouse" aria-hidden="true"></span><span class="label" data-i18n="ui.scroll">Desliza</span>
-      </a>
-    </div>
-  </section>
+      <a href="#serveis" class="scroll-hint scroll-link" aria-label="Haz scroll para continuar">
+        <span class="mouse" aria-hidden="true"></span><span class="label" data-i18n="ui.scroll">Desliza</span>
+      </a>
+    </div>
+  </section>
 
-  <section id="serveis" class="section services" aria-label="Servicios">
-    <div class="container">
-      <header class="section-head">
-        <h2><span data-i18n="services.title">Servicios</span> <span class="grad-text" data-i18n="services.subtitle">end-to-end</span></h2>
-        <p data-i18n="services.desc">Soluciones completas: del concepto al despliegue, con rendimiento top y SEO técnico de base.</p>
-      </header>
+  <section id="serveis" class="section services" aria-label="Servicios">
+    <div class="container">
+      <header class="section-head">
+        <h2><span data-i18n="services.title">Servicios</span> <span class="grad-text" data-i18n="services.subtitle">end-to-end</span></h2>
+        <p data-i18n="services.desc">Soluciones completas: del concepto al despliegue, con rendimiento top y SEO técnico de base.</p>
+      </header>
 
-      <div class="services-grid">
-        <article class="service-card tilt">
-          <div class="icon" aria-hidden="true"><i class="fa-solid fa-object-group"></i></div>
-          <h3 data-i18n="services.uiux.title">Diseño UI/UX</h3>
-          <p data-i18n="services.uiux.desc">Interfaces claras, accesibles y con identidad propia. Wireframes, componentes y sistemas de diseño.</p>
-          <ul class="bullets">
-            <li data-i18n="services.uiux.b1">Design system</li>
-            <li data-i18n="services.uiux.b2">Prototipado</li>
-            <li data-i18n="services.uiux.b3">Accesibilidad (WCAG)</li>
-          </ul>
-        </article>
+      <div class="services-grid">
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-object-group"></i></div>
+          <h3 data-i18n="services.uiux.title">Diseño UI/UX</h3>
+          <p data-i18n="services.uiux.desc">Interfaces claras, accesibles y con identidad propia. Wireframes, componentes y sistemas de diseño.</p>
+          <ul class="bullets">
+            <li data-i18n="services.uiux.b1">Design system</li>
+            <li data-i18n="services.uiux.b2">Prototipado</li>
+            <li data-i18n="services.uiux.b3">Accesibilidad (WCAG)</li>
+          </ul>
+        </article>
 
-        <article class="service-card tilt">
-          <div class="icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
-          <h3 data-i18n="services.front.title">Front-end</h3>
-          <p data-i18n="services.front.desc">HTML5, CSS3, ES6+, animaciones pro y builds optimizados. SSR/SSG si hace falta.</p>
-          <ul class="bullets">
-            <li data-i18n="services.front.b1">Rendimiento y Core Web Vitals</li>
-            <li data-i18n="services.front.b2">Animaciones fluidas</li>
-            <li data-i18n="services.front.b3">Responsive avanzado</li>
-          </ul>
-        </article>
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+          <h3 data-i18n="services.front.title">Front-end</h3>
+          <p data-i18n="services.front.desc">HTML5, CSS3, ES6+, animaciones pro y builds optimizados. SSR/SSG si hace falta.</p>
+          <ul class="bullets">
+            <li data-i18n="services.front.b1">Rendimiento y Core Web Vitals</li>
+            <li data-i18n="services.front.b2">Animaciones fluidas</li>
+            <li data-i18n="services.front.b3">Responsive avanzado</li>
+          </ul>
+        </article>
 
-        <article class="service-card tilt">
-          <div class="icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
-          <h3 data-i18n="services.back.title">Back-end</h3>
-          <p data-i18n="services.back.desc">APIs seguras, bases de datos e integraciones. Headless CMS o microservicios según proyecto.</p>
-          <ul class="bullets">
-            <li data-i18n="services.back.b1">Autenticación & seguridad</li>
-            <li data-i18n="services.back.b2">REST/GraphQL</li>
-            <li data-i18n="services.back.b3">Integraciones a medida</li>
-          </ul>
-        </article>
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
+          <h3 data-i18n="services.back.title">Back-end</h3>
+          <p data-i18n="services.back.desc">APIs seguras, bases de datos e integraciones. Headless CMS o microservicios según proyecto.</p>
+          <ul class="bullets">
+            <li data-i18n="services.back.b1">Autenticación & seguridad</li>
+            <li data-i18n="services.back.b2">REST/GraphQL</li>
+            <li data-i18n="services.back.b3">Integraciones a medida</li>
+          </ul>
+        </article>
 
-        <article class="service-card tilt">
-          <div class="icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-          <h3 data-i18n="services.seo.title">SEO Técnico</h3>
-          <p data-i18n="services.seo.desc">Arquitectura, schema, metadatos y sitemaps. Velocidad y rastreo impecables.</p>
-          <ul class="bullets">
-            <li data-i18n="services.seo.b1">On-page & técnico</li>
-            <li data-i18n="services.seo.b2">Analítica de eventos</li>
-            <li data-i18n="services.seo.b3">Estrategia de contenido</li>
-          </ul>
-        </article>
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h3 data-i18n="services.seo.title">SEO Técnico</h3>
+          <p data-i18n="services.seo.desc">Arquitectura, schema, metadatos y sitemaps. Velocidad y rastreo impecables.</p>
+          <ul class="bullets">
+            <li data-i18n="services.seo.b1">On-page & técnico</li>
+            <li data-i18n="services.seo.b2">Analítica de eventos</li>
+            <li data-i18n="services.seo.b3">Estrategia de contenido</li>
+          </ul>
+        </article>
 
-        <article class="service-card tilt">
-          <div class="icon" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-          <h3 data-i18n="services.maint.title">Mantenimiento</h3>
-          <p data-i18n="services.maint.desc">Monitorización, actualizaciones y soporte. Copias de seguridad y prevención.</p>
-          <ul class="bullets">
-            <li data-i18n="services.maint.b1">Uptime & alertas</li>
-            <li data-i18n="services.maint.b2">Hardening básico</li>
-            <li data-i18n="services.maint.b3">Backups automatizados</li>
-          </ul>
-        </article>
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+          <h3 data-i18n="services.maint.title">Mantenimiento</h3>
+          <p data-i18n="services.maint.desc">Monitorización, actualizaciones y soporte. Copias de seguridad y prevención.</p>
+          <ul class="bullets">
+            <li data-i18n="services.maint.b1">Uptime & alertas</li>
+            <li data-i18n="services.maint.b2">Hardening básico</li>
+            <li data-i18n="services.maint.b3">Backups automatizados</li>
+          </ul>
+        </article>
 
-        <article class="service-card tilt">
-          <div class="icon" aria-hidden="true"><i class="fa-solid fa-gauge-high"></i></div>
-          <h3 data-i18n="services.opt.title">Optimizaciones</h3>
-          <p data-i18n="services.opt.desc">Lazy-loading, code-splitting, compresiones y CDN. Rendimiento al máximo.</p>
-          <ul class="bullets">
-            <li data-i18n="services.opt.b1">Auditorías de rendimiento</li>
-            <li data-i18n="services.opt.b2">Core Web Vitals</li>
-            <li data-i18n="services.opt.b3">Mejoras continuas</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
+        <article class="service-card tilt">
+          <div class="icon" aria-hidden="true"><i class="fa-solid fa-gauge-high"></i></div>
+          <h3 data-i18n="services.opt.title">Optimizaciones</h3>
+          <p data-i18n="services.opt.desc">Lazy-loading, code-splitting, compresiones y CDN. Rendimiento al máximo.</p>
+          <ul class="bullets">
+            <li data-i18n="services.opt.b1">Auditorías de rendimiento</li>
+            <li data-i18n="services.opt.b2">Core Web Vitals</li>
+            <li data-i18n="services.opt.b3">Mejoras continuas</li>
+          </ul>
+        </article>
+      </div>
 
-  <header class="section-head" style="margin-top:34px">
-    <h3 style="font-family:var(--font-display);">
-      <span> Manteni</span><span class="grad-text">miento</span>
-    </h3>
-    <p>Qué incluye cada nivel y a quién va dirigido.</p>
-  </header>
+      <div class="maintenance-plans">
+        <header class="section-head" style="margin-top:34px">
+              <h2 style="font-family:var(--font-display);">
+                <span data-i18n="maint.title_plain">Manteni</span><span class="grad-text" data-i18n="maint.title_accent">miento</span>
+                </h2>
+              <p data-i18n="maint.desc">Qué incluye cada nivel y a quién va dirigido.</p>
+        </header>
 
-  <div class="services-grid">
-    <article class="service-card">
-      <h3>Essencial — 59 €/mes</h3>
-      <ul class="bullets">
-        <li>Actualizaciones menores</li>
-        <li>Uptime + alertas básicas</li>
-        <li>Backups semanales</li>
-        <li>0,5 h/mes de cambios</li>
-        <li>SLA 48 h laborables</li>
-      </ul>
-    </article>
-    <article class="service-card">
-      <h3>Pro — 149 €/mes</h3>
-      <ul class="bullets">
-        <li>Todo lo Essencial</li>
-        <li>Backups diarios + prioridad</li>
-        <li>Mini-audit CWV/SEO mensual</li>
-        <li>2–3 h/mes de cambios</li>
-        <li>SLA 24 h laborables</li>
-      </ul>
-    </article>
-  </div>
-</div>
-</section>
+        <div class="services-grid">
+          <article class="service-card">
+            <h3 data-i18n="maint.plan_essential">Essencial — 59 €/mes</h3>
+            <ul class="bullets">
+              <li data-i18n="maint.essential.b1">Actualizaciones menores</li>
+              <li data-i18n="maint.essential.b2">Uptime + alertas básicas</li>
+              <li data-i18n="maint.essential.b3">Backups semanales</li>
+              <li data-i18n="maint.essential.b4">0,5 h/mes de cambios</li>
+              <li data-i18n="maint.essential.b5">SLA 48 h laborables</li>
+            </ul>
+          </article>
+          <article class="service-card">
+            <h3 data-i18n="maint.plan_pro">Pro — 149 €/mes</h3>
+            <ul class="bullets">
+              <li data-i18n="maint.pro.b1">Todo lo Essencial</li>
+              <li data-i18n="maint.pro.b2">Backups diarios + prioridad</li>
+              <li data-i18n="maint.pro.b3">Mini-audit CWV/SEO mensual</li>
+              <li data-i18n="maint.pro.b4">2–3 h/mes de cambios</li>
+              <li data-i18n="maint.pro.b5">SLA 24 h laborables</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section id="projectes" class="section projects" aria-label="Proyectos">
-    <div class="container">
-      <header class="section-head">
-        <h2><span data-i18n="projects.title">Proyectos</span> <span class="grad-text" data-i18n="projects.subtitle">que Brillan</span></h2>
-        <p data-i18n="projects.desc">Una muestra visual de lo que podemos crear juntos. Carrusel fluido y microinteracciones.</p>
-      </header>
+  <section id="projectes" class="section projects" aria-label="Proyectos">
+    <div class="container">
+      <header class="section-head">
+        <h2><span data-i18n="projects.title">Proyectos</span> <span class="grad-text" data-i18n="projects.subtitle">que Brillan</span></h2>
+        <p data-i18n="projects.desc">Una muestra visual de lo que podemos crear juntos. Carrusel fluido y microinteracciones.</p>
+      </header>
 
-      <div class="projects-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide project-card tilt">
-            <div class="project-media">
-              <img src="Pic3.webp" alt="Vista previa del proyecto Viajar a NY" width="1600" height="900" loading="lazy" decoding="async">
-            </div>
-            <div class="project-info">
-              <h3>Viajar a NY — Guía</h3>
-              <p data-i18n="projects.items.saas">Landing altamente conversiva con animaciones de producto.</p>
-              <span class="tag">Front-end</span><span class="tag">SEO</span>
-              <a href="https://utilixdev.github.io/Viajar-a-Nueva-York/" class="btn small outline view-project scroll-link" data-project="Landing Page" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
-            </div>
-          </div>
+      <div class="projects-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide project-card tilt">
+            <div class="project-media" style="--bg:url('Pic3.webp');"></div>
+            <div class="project-info">
+              <h3>Viajar a NY — Guía</h3>
+              <p data-i18n="projects.items.saas">Landing altamente conversiva con animaciones de producto.</p>
+              <span class="tag">Front-end</span><span class="tag">SEO</span>
+              <a href="https://utilixdev.github.io/Viajar-a-Nueva-York/" class="btn small outline view-project scroll-link" data-project="Landing Page" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
+            </div>
+          </div>
 
-          <div class="swiper-slide project-card tilt">
-            <div class="project-media">
-              <img src="Despacho abogados.webp" alt="Vista previa del proyecto IurisLegal" width="1600" height="900" loading="lazy" decoding="async">
-            </div>
-            <div class="project-info">
-              <h3>IurisLegal</h3>
-              <p data-i18n="projects.items.ecom">Arquitectura headless, pagespeed y conversiones a tope.</p>
-              <span class="tag">Front-end</span><span class="tag">UX</span>
-              <a href="https://utilixdev.github.io/Lawyer/" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
-            </div>
-          </div>
+          <div class="swiper-slide project-card tilt">
+            <div class="project-media" style="--bg:url('Despacho abogados.webp');"></div>
+            <div class="project-info">
+              <h3>IurisLegal</h3>
+              <p data-i18n="projects.items.ecom">Arquitectura headless, pagespeed y conversiones a tope.</p>
+              <span class="tag">Front-end</span><span class="tag">UX</span>
+              <a href="https://utilixdev.github.io/Lawyer/" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
+            </div>
+          </div>
 
-          <div class="swiper-slide project-card tilt">
-            <div class="project-media">
-              <img src="Pelu.webp" alt="Vista previa del proyecto Pentina't" width="1600" height="900" loading="lazy" decoding="async">
-            </div>
-            <div class="project-info">
-              <h3>Pentina't</h3>
-              <p data-i18n="projects.items.corp">Landing potente para servicios locales.</p>
-              <span class="tag">Front-end</span><span class="tag">UX</span>
-              <a href="https://utilixdev.github.io/Pentina-t/" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
-            </div>
-          </div>
+          <div class="swiper-slide project-card tilt">
+            <div class="project-media" style="--bg:url('Pelu.webp');"></div>
+            <div class="project-info">
+              <h3>Pentina't</h3>
+              <p data-i18n="projects.items.corp">Landing potente para servicios locales.</p>
+              <span class="tag">Front-end</span><span class="tag">UX</span>
+              <a href="https://utilixdev.github.io/Pentina-t/" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
+            </div>
+          </div>
 
-          <div class="swiper-slide project-card tilt">
-            <div class="project-media" style="--bg:url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="project-info">
-              <h3>Web Corporativa</h3>
-              <p data-i18n="projects.items.corp">Identidad sólida y narrativa visual con microinteracciones.</p>
-              <span class="tag">UI</span><span class="tag">Accesibilidad</span>
-              <a href="#quote" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project">Ver proyecto</a>
-            </div>
-          </div>
+          <div class="swiper-slide project-card tilt">
+            <div class="project-media" style="--bg:url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="project-info">
+              <h3>Web Corporativa</h3>
+              <p data-i18n="projects.items.corp">Identidad sólida y narrativa visual con microinteracciones.</p>
+              <span class="tag">UI</span><span class="tag">Accesibilidad</span>
+              <a href="#quote" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project">Ver proyecto</a>
+            </div>
+          </div>
 
-          <div class="swiper-slide project-card tilt">
-            <div class="project-media" style="--bg:url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600&auto=format&fit=crop');"></div>
-            <div class="project-info">
-              <h3>Web App</h3>
-              <p data-i18n="projects.items.app">Panel dinámico con gráficas y actualizaciones en tiempo real.</p>
-              <span class="tag">SPA</span><span class="tag">API</span>
-              <a href="#quote" class="btn small outline view-project scroll-link" data-project="Web App" data-i18n="cta.view_project">Ver proyecto</a>
-            </div>
-          </div>
-        </div>
+          <div class="swiper-slide project-card tilt">
+            <div class="project-media" style="--bg:url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?q=80&w=1600&auto=format&fit=crop');"></div>
+            <div class="project-info">
+              <h3>Web App</h3>
+              <p data-i18n="projects.items.app">Panel dinámico con gráficas y actualizaciones en tiempo real.</p>
+              <span class="tag">SPA</span><span class="tag">API</span>
+              <a href="#quote" class="btn small outline view-project scroll-link" data-project="Web App" data-i18n="cta.view_project">Ver proyecto</a>
+            </div>
+          </div>
+        </div>
 
-        <button class="swiper-button-prev" aria-label="Anterior"></button>
-        <button class="swiper-button-next" aria-label="Siguiente"></button>
-      </div>
-    </div>
-  </section>
+        <button class="swiper-button-prev" aria-label="Anterior"></button>
+        <button class="swiper-button-next" aria-label="Siguiente"></button>
+      </div>
+    </div>
+  </section>
 
-  <section id="metodologia" class="section method" aria-label="Metodología">
-    <div class="container method-grid">
-      <div class="method-copy">
-        <h2><span data-i18n="method.title">Método</span> <span class="grad-text" data-i18n="method.subtitle">CLARO</span> <span data-i18n="method.and">y colaborativo</span></h2>
-        <ol class="steps">
-          <li><strong data-i18n="method.s1t">Discovery:</strong> <span data-i18n="method.s1">objetivos, público y éxitos medibles.</span></li>
-          <li><strong data-i18n="method.s2t">Diseño:</strong> <span data-i18n="method.s2">wireframes, UI, prototipos.</span></li>
-          <li><strong data-i18n="method.s3t">Construcción:</strong> <span data-i18n="method.s3">front-end / back-end e integraciones.</span></li>
-          <li><strong data-i18n="method.s4t">Lanzamiento:</strong> <span data-i18n="method.s4">SEO técnico, analítica y A/B testing.</span></li>
-          <li><strong data-i18n="method.s5t">Cuidado continuo:</strong> <span data-i18n="method.s5">mantenimiento y evoluciones.</span></li>
-        </ol>
-      </div>
-      <div class="method-visual tilt" aria-hidden="true">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-      </div>
-    </div>
-  </section>
+  <section id="metodologia" class="section method" aria-label="Metodología">
+    <div class="container method-grid">
+      <div class="method-copy">
+        <h2><span data-i18n="method.title">Método</span> <span class="grad-text" data-i18n="method.subtitle">CLARO</span> <span data-i18n="method.and">y colaborativo</span></h2>
+        <ol class="steps">
+          <li><strong data-i18n="method.s1t">Discovery:</strong> <span data-i18n="method.s1">objetivos, público y éxitos medibles.</span></li>
+          <li><strong data-i18n="method.s2t">Diseño:</strong> <span data-i18n="method.s2">wireframes, UI, prototipos.</span></li>
+          <li><strong data-i18n="method.s3t">Construcción:</strong> <span data-i18n="method.s3">front-end / back-end e integraciones.</span></li>
+          <li><strong data-i18n="method.s4t">Lanzamiento:</strong> <span data-i18n="method.s4">SEO técnico, analítica y A/B testing.</span></li>
+          <li><strong data-i18n="method.s5t">Cuidado continuo:</strong> <span data-i18n="method.s5">mantenimiento y evoluciones.</span></li>
+        </ol>
+      </div>
+      <div class="method-visual tilt" aria-hidden="true">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+      </div>
+    </div>
+  </section>
 
-  <section id="quote" class="section quote" aria-label="Solicitar propuesta">
-    <div class="container">
-      <header class="section-head">
-        <h2 class="section-title">
-          <span data-i18n="quote.title_plain">Solicita</span>
-          <span class="grad-text" data-i18n="quote.title_accent">tu propuesta</span>
-        </h2>
-        <p data-i18n="quote.desc">Cuéntanos qué necesitas y el rango de inversión que tienes en mente. Te responderé con una propuesta a medida.</p>
-      </header>
+  <section id="quote" class="section quote" aria-label="Solicitar propuesta">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="section-title">
+          <span data-i18n="quote.title_plain">Solicita</span>
+          <span class="grad-text" data-i18n="quote.title_accent">tu propuesta</span>
+        </h2>
+        <p data-i18n="quote.desc">Cuéntanos qué necesitas y el rango de inversión que tienes en mente. Te responderé con una propuesta a medida.</p>
+      </header>
 
-      <button class="btn primary big quote-toggle" id="quoteToggle" data-magnetic type="button" aria-expanded="false" data-i18n="quote.open">Abrir formulario</button>
+      <button class="btn primary big quote-toggle" id="quoteToggle" data-magnetic type="button" aria-expanded="false" data-i18n="quote.open">Abrir formulario</button>
 
-      <form class="quote-form is-collapsed" id="quoteForm" novalidate
-            action="https://formspree.io/f/xeorzwpo" method="POST">
-        <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX.tech">
-        <input type="hidden" name="_replyto" id="email-hidden">
-        <input type="hidden" name="type"   id="hiddenType"   value="landing">
-        <input type="hidden" name="budget" id="hiddenBudget" value="1-3k">
-        <input type="hidden" name="speed"  id="hiddenSpeed"  value="normal">
+      <form class="quote-form is-collapsed" id="quoteForm" novalidate
+            action="https://formspree.io/f/xeorzwpo" method="POST">
+        <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX.tech">
+        <input type="hidden" name="_replyto" id="email-hidden">
+        <input type="hidden" name="type"   id="hiddenType"   value="landing">
+        <input type="hidden" name="budget" id="hiddenBudget" value="1-2.5k">
+        <input type="hidden" name="speed"  id="hiddenSpeed"  value="normal">
 
-        <div class="field">
-          <label for="type" data-i18n="quote.type">Tipo de proyecto</label>
-          <div class="chips" id="type">
-            <button type="button" class="chip selected" data-type="landing" data-i18n="quote.types.landing">Landing</button>
-            <button type="button" class="chip" data-type="corporativa" data-i18n="quote.types.corp">Web corporativa</button>
-            <button type="button" class="chip" data-type="ecommerce" data-i18n="quote.types.ecom">E-commerce</button>
-            <button type="button" class="chip" data-type="webapp" data-i18n="quote.types.app">Web App</button>
-          </div>
-        </div>
+        <div class="field">
+          <label for="type" data-i18n="quote.type">Tipo de proyecto</label>
+          <div class="chips" id="type">
+            <button type="button" class="chip selected" data-type="landing" data-i18n="quote.types.landing">Landing</button>
+            <button type="button" class="chip" data-type="corporativa" data-i18n="quote.types.corp">Web corporativa</button>
+            <button type="button" class="chip" data-type="ecommerce" data-i18n="quote.types.ecom">E-commerce</button>
+            <button type="button" class="chip" data-type="webapp" data-i18n="quote.types.app">Web App</button>
+          </div>
+        </div>
 
-        <div class="field">
-          <label for="budget" data-i18n="quote.budget">Rango de inversión estimado</label>
-          <div class="chips" id="budget">
-            <button type="button" class="chip" data-budget="<1k">&lt; 1.000 €</button>
-            <button type="button" class="chip selected" data-budget="1-2.5k">1.000–2.000 €</button>
-            <button type="button" class="chip" data-budget="2.5-6k">2.500–5.000 €</button>
-            <button type="button" class="chip" data-budget="5-10k">5.000–10.000 €</button>
-            <button type="button" class="chip" data-budget="10k+">10.000 €+</button>
-          </div>
-        </div>
+        <div class="field">
+          <label for="budget" data-i18n="quote.budget">Rango de inversión estimado</label>
+          <div class="chips" id="budget">
+            <button type="button" class="chip" data-budget="<1k">&lt; 1.000 €</button>
+            <button type="button" class="chip selected" data-budget="1-2.5k">1.000–2.000 €</button>
+            <button type="button" class="chip" data-budget="2.5-6k">2.500–5.000 €</button>
+            <button type="button" class="chip" data-budget="5-10k">5.000–10.000 €</button>
+            <button type="button" class="chip" data-budget="10k+">10.000 €+</button>
+          </div>
+        </div>
 
-        <div class="field">
-          <label data-i18n="quote.speed">Urgencia</label>
-          <div class="chips">
-            <button type="button" class="chip selected" data-speed="normal" data-i18n="quote.speed_normal">Normal</button>
-            <button type="button" class="chip" data-speed="express" data-i18n="quote.speed_express">Exprés</button>
-          </div>
-        </div>
+        <div class="field">
+          <label data-i18n="quote.speed">Urgencia</label>
+          <div class="chips">
+            <button type="button" class="chip selected" data-speed="normal" data-i18n="quote.speed_normal">Normal</button>
+            <button type="button" class="chip" data-speed="express" data-i18n="quote.speed_express">Exprés</button>
+          </div>
+        </div>
 
-        <div class="field">
-          <label for="desc" data-i18n="quote.desc_label">Describe el proyecto</label>
-          <textarea id="desc" name="message" rows="4" placeholder="Objetivos, funcionalidades clave, referentes visuales…" data-i18n-placeholder="quote.desc_ph"></textarea>
-        </div>
+        <div class="field">
+          <label for="desc" data-i18n="quote.desc_label">Describe el proyecto</label>
+          <textarea id="desc" name="message" rows="4" placeholder="Objetivos, funcionalidades clave, referentes visuales…" data-i18n-placeholder="quote.desc_ph"></textarea>
+        </div>
 
-        <div class="field grid-2">
-          <div>
-            <label for="name" data-i18n="quote.name">Nombre</label>
-            <input id="name" name="name" type="text" placeholder="Nombre y apellidos" required data-i18n-placeholder="quote.name_ph" />
-          </div>
-          <div>
-            <label for="email" data-i18n="quote.email">Email</label>
-            <input id="email" name="email" type="email" placeholder="tu@empresa.com" required data-i18n-placeholder="quote.email_ph" />
-          </div>
-        </div>
+        <div class="field grid-2">
+          <div>
+            <label for="name" data-i18n="quote.name">Nombre</label>
+            <input id="name" name="name" type="text" placeholder="Nombre y apellidos" required data-i18n-placeholder="quote.name_ph" />
+          </div>
+          <div>
+            <label for="email" data-i18n="quote.email">Email</label>
+            <input id="email" name="email" type="email" placeholder="tu@empresa.com" required data-i18n-placeholder="quote.email_ph" />
+          </div>
+        </div>
 
-        <div class="estimate">
-          <div class="hint-quiet" data-i18n="quote.privacy">No mostramos precios aquí: valoramos cada proyecto y te enviamos la mejor propuesta posible.</div>
-          <button type="submit" class="btn primary big" data-magnetic>
-            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span data-i18n="quote.send">Enviar solicitud</span>
-          </button>
-          <div id="quoteMsg" class="hint-quiet" role="status" aria-live="polite"></div>
-        </div>
-      </form>
-    </div>
+        <div class="estimate">
+          <div class="hint-quiet" data-i18n="quote.privacy">No mostramos precios aquí: valoramos cada proyecto y te enviamos la mejor propuesta posible.</div>
+          <button type="submit" class="btn primary big" data-magnetic>
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span data-i18n="quote.send">Enviar solicitud</span>
+          </button>
+          <div id="quoteMsg" class="hint-quiet" role="status" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
 
-    <a href="https://wa.me/34679958614?text=Hola,%20me%20gustaría%20saber%20más%20acerca%20de%20tus%20servicios"
-       class="whatsapp-button" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
-           alt="Logo de WhatsApp" width="40" height="40" loading="lazy" decoding="async">
-    </a>
-  </section>
+    <a href="https://wa.me/34679958614?text=Hola,%20me%20gustaría%20saber%20más%20acerca%20de%20tus%20servicios"
+       class="whatsapp-button" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+           alt="Logo de WhatsApp" width="40" height="40" loading="lazy" decoding="async">
+    </a>
+  </section>
 
-  <footer id="contacte" class="site-footer" aria-label="Pie de página">
-    <div class="footer-bg" aria-hidden="true"></div>
-    <div class="container footer-grid">
-      <div class="foot-brand">
-        <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio">UtiLiX.tech</a>
-        <p data-i18n="footer.tagline">Creamos Experiencias Digitales que Convierten y Perduran.</p>
-        <div class="socials">
-          <a href="mailto:barucnsue@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
-          <a href="https://www.linkedin.com/in/barucnsue/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
-          <a href="https://github.com/utilixdev" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
-        </div>
-      </div>
+  <footer id="contacte" class="site-footer" aria-label="Pie de página">
+    <div class="footer-bg" aria-hidden="true"></div>
+    <div class="container footer-grid">
+      <div class="foot-brand">
+        <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio">UtiLiX.tech</a>
+        <p data-i18n="footer.tagline">Creamos Experiencias Digitales que Convierten y Perduran.</p>
+        <div class="socials">
+          <a href="mailto:barucnsue@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/barucnsue/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></a>
+          <a href="https://github.com/utilixdev" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+        </div>
+      </div>
 
-      <nav class="foot-links" aria-label="Enlaces rápidos">
-        <h4 data-i18n="footer.nav">Navega</h4>
-        <ul>
-          <li><a href="#serveis" class="scroll-link" data-i18n="nav.services">Servicios</a></li>
-          <li><a href="#projectes" class="scroll-link" data-i18n="nav.projects">Proyectos</a></li>
-          <li><a href="#metodologia" class="scroll-link" data-i18n="nav.method">Método</a></li>
-          <li><a href="#quote" class="scroll-link" data-i18n="nav.quote">Propuesta</a></li>
-        </ul>
-      </nav>
+      <nav class="foot-links" aria-label="Enlaces rápidos">
+        <h4 data-i18n="footer.nav">Navega</h4>
+        <ul>
+          <li><a href="#serveis" class="scroll-link" data-i18n="nav.services">Servicios</a></li>
+          <li><a href="#projectes" class="scroll-link" data-i18n="nav.projects">Proyectos</a></li>
+          <li><a href="#metodologia" class="scroll-link" data-i18n="nav.method">Método</a></li>
+          <li><a href="#quote" class="scroll-link" data-i18n="nav.quote">Propuesta</a></li>
+        </ul>
+      </nav>
 
-      <div class="foot-contact">
-        <h4 data-i18n="footer.contact">Contacto</h4>
-        <ul>
-          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:barucnsue@gmail.com">info@utilixtech.com</a></li>
-          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+34679958614">+34 679 95 86 14</a></li>
-          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span data-i18n="footer.location">Barcelona — Remote first</span></li>
-        </ul>
-      </div>
-    </div>
+      <div class="foot-contact">
+        <h4 data-i18n="footer.contact">Contacto</h4>
+        <ul>
+          <li><i class="fa-solid fa-envelope" aria-hidden="true"></i> <a href="mailto:barucnsue@gmail.com">info@utilixtech.com</a></li>
+          <li><i class="fa-solid fa-phone" aria-hidden="true"></i> <a href="tel:+34679958614">+34 679 95 86 14</a></li>
+          <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> <span data-i18n="footer.location">Barcelona — Remote first</span></li>
+        </ul>
+      </div>
+    </div>
 
-    <div class="subfooter">
-      <p>© <span id="year"></span> UtiLiX.tech · <span data-i18n="footer.rights">Todos los derechos reservados</span></p>
-      <a href="#hero" class="to-top scroll-link" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
-    </div>
-  </footer>
+    <div class="subfooter">
+      <p>© <span id="year"></span> UtiLiX.tech · <span data-i18n="footer.rights">Todos los derechos reservados</span></p>
+      <a href="#hero" class="to-top scroll-link" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+    </div>
+  </footer>
 
-  <script defer src="script.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer"
-        media="print" 
-        onload="this.media='all'"/>
+  <script defer src="script.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer"
+        media="print" 
+        onload="this.media='all'"/>
 </body>
 </html>
