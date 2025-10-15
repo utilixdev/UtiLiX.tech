@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#ffffff" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
-  <title>UtiLiX.tech — Diseño & Desarrollo Web a Medida (Rápido, SEO & Accesible)</title>
-  <meta name="description" content="UtiLiX.tech: diseño y desarrollo web a medida. HTML, CSS, JS, front-end y back-end, rendimiento 90+ CWV, accesibilidad AA/AAA y SEO técnico listo." />
+  <title>UtiLiX — Diseño & Desarrollo Web a Medida (Rápido, SEO & Accesible)</title>
+  <meta name="description" content="UtiLiX: diseño y desarrollo web a medida. HTML, CSS, JS, front-end y back-end, rendimiento 90+ CWV, accesibilidad AA/AAA y SEO técnico listo." />
 
-  <!-- Canonical & i18n (client-side) -->
-  <link rel="canonical" href="https://utilix.tech/" />
+  <!-- Canonical & i18n -->
+  <link rel="canonical" href="https://utilix.es" />
 
   <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -27,27 +27,27 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="UtiLiX.tech">
-  <meta property="og:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
+  <meta property="og:site_name" content="UtiLiX">
+  <meta property="og:title" content="UtiLiX — Diseño & Desarrollo Web a Medida">
   <meta property="og:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
-  <meta property="og:url" content="https://utilix.tech/">
-  <meta property="og:image" content="https://utilix.tech/og-image.jpg">
-  <meta property="og:image:alt" content="UtiLiX.tech — Diseño & Desarrollo Web">
+  <meta property="og:url" content="https://utilix.es/">
+  <meta property="og:image" content="https://utilix.es/og-image.jpg">
+  <meta property="og:image:alt" content="UtiLiX — Diseño & Desarrollo Web">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="UtiLiX.tech — Diseño & Desarrollo Web a Medida">
+  <meta name="twitter:title" content="UtiLiX — Diseño & Desarrollo Web a Medida">
   <meta name="twitter:description" content="Rápido, accesible y SEO-ready. Landing, corporativas, e-commerce y web apps.">
-  <meta name="twitter:image" content="https://utilix.tech/og-image.jpg">
+  <meta name="twitter:image" content="https://utilix.es/og-image.jpg">
 
   <!-- JSON-LD Organization -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "UtiLiX.tech",
-    "url": "https://utilix.tech/",
-    "logo": "https://utilix.tech/favicon.png",
+    "name": "UtiLiX",
+    "url": "https://utilix.es/",
+    "logo": "https://utilix.es/favicon.png",
     "email": "info@utilixtech.com",
     "sameAs": [
       "mailto:info@utilixtech.com",
@@ -66,7 +66,6 @@
     body[data-lang="ca"] .i18n-ca { display: inline; }
     body[data-lang="en"] .i18n-en { display: inline; }
 
-    /* Per blocs (no només inline) */
     .i18n-block { display: none; }
     body[data-lang="es"] .i18n-block-es { display: block; }
     body[data-lang="ca"] .i18n-block-ca { display: block; }
@@ -103,21 +102,12 @@
 </head>
 <body class="no-js" data-lang="es">
   
-  <!-- PRELOADER 
-  <div id="preloader" class="preloader" aria-hidden="true">
-    <div class="preloader-inner">
-      <div class="ring" aria-hidden="true"></div>
-      <div class="monogram" aria-label="UtiLiX.tech">U<span>l</span>X</div>
-      <div class="progress" aria-hidden="true"><span id="prePct">0</span>%</div>
-    </div>
-  </div> -->
-
   <!-- HEADER -->
   <header class="site-header" aria-label="Cabecera">
     <div class="container header-inner">
+      <!-- Anchor intern (sense index.html) -->
       <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
 
-      <!-- Hamburguesa centrada -->
       <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" type="button">
         <span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
         <span class="hamburger-label" data-i18n="ui.menu">Menú</span>
@@ -133,15 +123,12 @@
       </div>
     </div>
 
-    <!-- Backdrop + Menú overlay -->
     <div class="nav-dim" id="navDim" aria-hidden="true"></div>
     <nav id="nav" class="nav-overlay" aria-hidden="true">
       <ul class="nav-list">
         <li><a href="#serveis" class="nav-link scroll-link" data-i18n="nav.services">Servicios</a></li>
         <li><a href="#projectes" class="nav-link scroll-link" data-i18n="nav.projects">Proyectos</a></li>
         <li><a href="#metodologia" class="nav-link scroll-link" data-i18n="nav.method">Método</a></li>
-
-        <!-- 🔥 NUEVO: Tips en el menú -->
         <li>
           <a href="#tips" class="nav-link scroll-link">
             <span class="i18n i18n-es">Tips</span>
@@ -149,7 +136,6 @@
             <span class="i18n i18n-en">Tips</span>
           </a>
         </li>
-
         <li><a href="#quote" class="nav-link scroll-link" data-i18n="nav.quote">Propuesta</a></li>
         <li><a href="#contacte" class="nav-link scroll-link" data-i18n="nav.contact">Contacto</a></li>
       </ul>
@@ -258,42 +244,38 @@
     </div>
   </section>
 
+  <!-- Mantenimiento: Essencial vs Pro -->
+  <header class="section-head" style="margin-top:34px">
+    <h2 style="font-family:var(--font-display);">
+      <span> Manteni</span><span class="grad-text">miento</span>
+    </h2>
+    <p>Qué incluye cada nivel y a quién va dirigido.</p>
+  </header>
 
-       <!-- Mantenimiento: Essencial vs Pro -->
+  <div class="services-grid">
+    <article class="service-card">
+      <h3>Essencial — 59 €/mes</h3>
+      <ul class="bullets">
+        <li>Actualizaciones menores</li>
+        <li>Uptime + alertas básicas</li>
+        <li>Backups semanales</li>
+        <li>0,5 h/mes de cambios</li>
+        <li>SLA 48 h laborables</li>
+      </ul>
+    </article>
+    <article class="service-card">
+      <h3>Pro — 149 €/mes</h3>
+      <ul class="bullets">
+        <li>Todo lo Essencial</li>
+        <li>Backups diarios + prioridad</li>
+        <li>Mini-audit CWV/SEO mensual</li>
+        <li>2–3 h/mes de cambios</li>
+        <li>SLA 24 h laborables</li>
+      </ul>
+    </article>
+  </div>
 
-        <header class="section-head" style="margin-top:34px">
-              <h2 style="font-family:var(--font-display);">
-                <span> Manteni</span><span class="grad-text">miento</span>
-              </h2>
-              <p>Qué incluye cada nivel y a quién va dirigido.</p>
-        </header>
-
-        <div class="services-grid">
-          <article class="service-card">
-            <h3>Essencial — 59 €/mes</h3>
-            <ul class="bullets">
-              <li>Actualizaciones menores</li>
-              <li>Uptime + alertas básicas</li>
-              <li>Backups semanales</li>
-              <li>0,5 h/mes de cambios</li>
-              <li>SLA 48 h laborables</li>
-            </ul>
-          </article>
-          <article class="service-card">
-            <h3>Pro — 149 €/mes</h3>
-            <ul class="bullets">
-              <li>Todo lo Essencial</li>
-              <li>Backups diarios + prioridad</li>
-              <li>Mini-audit CWV/SEO mensual</li>
-              <li>2–3 h/mes de cambios</li>
-              <li>SLA 24 h laborables</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-  <!-- 🔥 NUEVA SECCIÓN: TIPS -->
+  <!-- TIPS -->
   <section id="tips" class="section" aria-label="Tips">
     <div class="container">
       <header class="section-head">
@@ -362,9 +344,9 @@
             <span class="i18n i18n-ca">Què és l’UX i per què canvia el teu negoci</span>
             <span class="i18n i18n-en">What UX is and why it matters</span>
           </h3>
-          <p class="i18n i18n-es">UX es claridad: menos fricción, más conversión. Formularios simples, microcopys claros y feedback instantáneo.</p>
-          <p class="i18n i18n-ca">UX és claredat: menys fricció, més conversió. Formularis simples, microcopys clars i feedback instantani.</p>
-          <p class="i18n i18n-en">UX is clarity: less friction, more conversion. Simple forms, clear microcopy, instant feedback.</p>
+            <p class="i18n i18n-es">UX es claridad: menos fricción, más conversión. Formularios simples, microcopys claros y feedback instantáneo.</p>
+            <p class="i18n i18n-ca">UX és claredat: menys fricció, més conversió. Formularis simples, microcopys clars i feedback instantani.</p>
+            <p class="i18n i18n-en">UX is clarity: less friction, more conversion. Simple forms, clear microcopy, instant feedback.</p>
           <div class="tip-actions">
             <a class="btn outline tiny" href="tips/que-es-ux.html">
               <span class="i18n i18n-es">Leer artículo</span>
@@ -393,7 +375,7 @@
               <h3>Viajar a NY — Guía</h3>
               <p data-i18n="projects.items.saas">Landing altamente conversiva con animaciones de producto.</p>
               <span class="tag">Front-end</span><span class="tag">SEO</span>
-              <a href="https://utilixdev.github.io/Viajar-a-Nueva-York/" class="btn small outline view-project scroll-link" data-project="Landing Page" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
+              <a href="https://utilixdev.github.io/Viajar-a-Nueva-York/" class="btn small outline view-project" rel="noopener" target="_blank" data-i18n="cta.view_project">Ver proyecto</a>
             </div>
           </div>
 
@@ -403,7 +385,7 @@
               <h3>IurisLegal</h3>
               <p data-i18n="projects.items.ecom">Arquitectura headless, pagespeed y conversiones a tope.</p>
               <span class="tag">Front-end</span><span class="tag">UX</span>
-              <a href="https://utilixdev.github.io/Lawyer/" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
+              <a href="https://utilixdev.github.io/Lawyer/" class="btn small outline view-project" rel="noopener" target="_blank" data-i18n="cta.view_project">Ver proyecto</a>
             </div>
           </div>
 
@@ -413,7 +395,7 @@
               <h3>Pentina't</h3>
               <p data-i18n="projects.items.corp">Landing potente para servicios locales.</p>
               <span class="tag">Front-end</span><span class="tag">UX</span>
-              <a href="https://utilixdev.github.io/Pentina-t/" class="btn small outline view-project scroll-link" data-project="Web Corporativa" data-i18n="cta.view_project" rel="noopener" target="_blank">Ver proyecto</a>
+              <a href="https://utilixdev.github.io/Pentina-t/" class="btn small outline view-project" rel="noopener" target="_blank" data-i18n="cta.view_project">Ver proyecto</a>
             </div>
           </div>
 
@@ -481,7 +463,7 @@
       <!-- Fallback sin JS -->
       <form class="quote-form is-collapsed" id="quoteForm" novalidate
             action="https://formspree.io/f/xeorzwpo" method="POST">
-        <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX.tech">
+        <input type="hidden" name="_subject" value="Solicitud de propuesta — UtiLiX">
         <input type="hidden" name="_replyto" id="email-hidden">
         <input type="hidden" name="type"   id="hiddenType"   value="landing">
         <input type="hidden" name="budget" id="hiddenBudget" value="1-3k">
@@ -555,7 +537,7 @@
     <div class="footer-bg" aria-hidden="true"></div>
     <div class="container footer-grid">
       <div class="foot-brand">
-        <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio">UtiLiX.tech</a>
+        <a href="#hero" class="brand scroll-link" aria-label="Ir al inicio">UtiLiX</a>
         <p data-i18n="footer.tagline">Creamos Experiencias Digitales que Convierten y Perduran.</p>
         <div class="socials">
           <a href="mailto:barucnsue@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
@@ -570,8 +552,6 @@
           <li><a href="#serveis" class="scroll-link" data-i18n="nav.services">Servicios</a></li>
           <li><a href="#projectes" class="scroll-link" data-i18n="nav.projects">Proyectos</a></li>
           <li><a href="#metodologia" class="scroll-link" data-i18n="nav.method">Método</a></li>
-          
-          <!-- 🔥 Nuevo enlace Tips en footer -->
           <li><a href="#tips" class="scroll-link">
             <span class="i18n i18n-es">Tips</span>
             <span class="i18n i18n-ca">Consells</span>
@@ -592,7 +572,7 @@
     </div>
 
     <div class="subfooter">
-      <p>© <span id="year"></span> UtiLiX.tech · <span data-i18n="footer.rights">Todos los derechos reservados</span></p>
+      <p>© <span id="year"></span> UtiLiX · <span data-i18n="footer.rights">Todos los derechos reservados</span></p>
       <a href="#hero" class="to-top scroll-link" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
     </div>
   </footer>
