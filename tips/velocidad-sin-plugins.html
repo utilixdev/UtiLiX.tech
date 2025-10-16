@@ -6,37 +6,34 @@
   <meta name="theme-color" content="#ffffff" />
   <meta name="robots" content="index,follow,max-image-preview:large" />
 
-  <title>Cómo mejorar la velocidad de tu web sin plugins — Tips | UtiLiX</title>
+  <title>Cómo mejorar la velocidad de tu web sin plugins — Tips | UtiLiX.tech</title>
   <meta name="description" content="Optimiza imágenes WebP/AVIF, lazy-loading, minificado de CSS/JS y CSS crítico. Guía práctica para alcanzar 100/100 en PageSpeed sin plugins." />
 
-  <!-- Canonical correcte al domini -->
-  <link rel="canonical" href="https://utilix.es/tips/velocidad-sin-plugins.html" />
+  <link rel="canonical" href="https://utilix.tech/tips/velocidad-sin-plugins.html" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png" sizes="180x180">
 
-  <!-- Icons -->
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="alternate icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
-
-  <!-- Fonts & CSS (igual que a la home) -->
+  <!-- Fonts & CSS (igual que index) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="../style.css" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="UtiLiX">
-  <meta property="og:title" content="Cómo mejorar la velocidad de tu web sin plugins — Tips | UtiLiX">
+  <meta property="og:site_name" content="UtiLiX.tech">
+  <meta property="og:title" content="Cómo mejorar la velocidad de tu web sin plugins — Tips | UtiLiX.tech">
   <meta property="og:description" content="Optimiza imágenes WebP/AVIF, lazy-loading, minificado y CSS crítico.">
-  <meta property="og:url" content="https://utilix.es/tips/velocidad-sin-plugins.html">
-  <meta property="og:image" content="https://utilix.es/og-image.jpg">
-  <meta property="og:image:alt" content="UtiLiX — Tips de rendimiento web">
+  <meta property="og:url" content="https://utilix.tech/tips/velocidad-sin-plugins.html">
+  <meta property="og:image" content="https://utilix.tech/og-image.jpg">
+  <meta property="og:image:alt" content="UtiLiX.tech — Tips de rendimiento web">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Cómo mejorar la velocidad de tu web sin plugins — Tips | UtiLiX">
+  <meta name="twitter:title" content="Cómo mejorar la velocidad de tu web sin plugins — Tips | UtiLiX.tech">
   <meta name="twitter:description" content="Optimiza imágenes WebP/AVIF, lazy-loading, minificado y CSS crítico.">
-  <meta name="twitter:image" content="https://utilix.es/og-image.jpg">
+  <meta name="twitter:image" content="https://utilix.tech/og-image.jpg">
 
   <!-- JSON-LD Article + Breadcrumb -->
   <script type="application/ld+json">
@@ -45,12 +42,12 @@
     "@type":"Article",
     "headline":"Cómo mejorar la velocidad de tu web sin plugins",
     "inLanguage":"es",
-    "author":{"@type":"Organization","name":"UtiLiX"},
-    "publisher":{"@type":"Organization","name":"UtiLiX","logo":{"@type":"ImageObject","url":"https://utilix.es/favicon.png"}},
+    "author":{"@type":"Organization","name":"UtiLiX.tech"},
+    "publisher":{"@type":"Organization","name":"UtiLiX.tech","logo":{"@type":"ImageObject","url":"https://utilix.tech/favicon.png"}},
     "datePublished":"2025-10-15",
     "dateModified":"2025-10-15",
-    "image":"https://utilix.es/og-image.jpg",
-    "mainEntityOfPage":{"@type":"WebPage","@id":"https://utilix.es/tips/velocidad-sin-plugins.html"},
+    "image":"https://utilix.tech/og-image.jpg",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://utilix.tech/tips/velocidad-sin-plugins.html"},
     "articleSection":"Rendimiento",
     "keywords":"rendimiento web, PageSpeed, WebP, lazy-loading, CSS crítico"
   }
@@ -60,25 +57,27 @@
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
     "itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://utilix.es/"},
-      {"@type":"ListItem","position":2,"name":"Tips","item":"https://utilix.es/tips/"},
-      {"@type":"ListItem","position":3,"name":"Velocidad sin plugins","item":"https://utilix.es/tips/velocidad-sin-plugins.html"}
+      {"@type":"ListItem","position":1,"name":"Inicio","item":"https://utilix.tech/"},
+      {"@type":"ListItem","position":2,"name":"Tips","item":"https://utilix.tech/#tips"},
+      {"@type":"ListItem","position":3,"name":"Velocidad sin plugins","item":"https://utilix.tech/tips/velocidad-sin-plugins.html"}
     ]
   }
   </script>
 
   <!-- i18n helpers + layout fixes -->
   <style>
+    /* i18n (mateix sistema) */
     .i18n{display:none} body[data-lang="es"] .i18n-es{display:inline}
     body[data-lang="ca"] .i18n-ca{display:inline} body[data-lang="en"] .i18n-en{display:inline}
     .i18n-block{display:none} body[data-lang="es"] .i18n-block-es{display:block}
     body[data-lang="ca"] .i18n-block-ca{display:block} body[data-lang="en"] .i18n-block-en{display:block}
 
+    /* Evitar que el nav tapi el contingut i millorar lectura */
     main.article{
       max-width: 860px;
       margin: 0 auto;
-      padding: clamp(96px, 12vh, 128px) 24px 48px;
-      min-height: 100dvh;
+      padding: clamp(96px, 12vh, 128px) 24px 48px; /* top padding gran per sota del header */
+      min-height: 100dvh; /* pantalla plena perquè no quedi “enganxat” a dalt */
       display: block;
     }
     .breadcrumbs {font-size:.9rem;color:#6b7280;margin:8px 0 16px}
@@ -92,10 +91,10 @@
 </head>
 <body class="no-js" data-lang="es">
 
-  <!-- HEADER (igual que l'índex però amb rutes netes) -->
+  <!-- HEADER (idèntic a index) -->
   <header class="site-header" aria-label="Cabecera">
     <div class="container header-inner">
-      <a href="/" class="brand" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
+      <a href="#" class="brand scroll-link" aria-label="Ir al inicio"><span>UtiLiX</span>.tech</a>
 
       <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav" type="button">
         <span class="hamburger-box" aria-hidden="true"><span class="hamburger-inner"></span></span>
@@ -108,26 +107,26 @@
           <button class="lang" data-lang="ca" aria-pressed="false" type="button">CA</button>
           <button class="lang" data-lang="en" aria-pressed="false" type="button">EN</button>
         </div>
-        <a href="/quote/" class="btn ghost small only-desktop" data-magnetic data-i18n="cta.quote">Pedir Propuesta</a>
+        <a href="../index.html#quote" class="btn ghost small only-desktop scroll-link" data-magnetic data-i18n="cta.quote">Pedir Propuesta</a>
       </div>
     </div>
 
     <div class="nav-dim" id="navDim" aria-hidden="true"></div>
     <nav id="nav" class="nav-overlay" aria-hidden="true">
       <ul class="nav-list">
-        <li><a href="/" class="nav-link" data-i18n="nav.home">Inicio</a></li>
-        <li><a href="/projectes/" class="nav-link" data-i18n="nav.projects">Proyectos</a></li>
-        <li><a href="/tips/" class="nav-link is-active"><span class="i18n i18n-es">Tips</span><span class="i18n i18n-ca">Consells</span><span class="i18n i18n-en">Tips</span></a></li>
-        <li><a href="/quote/" class="nav-link" data-i18n="nav.quote">Propuesta</a></li>
-        <li><a href="/#contacte" class="nav-link" data-i18n="nav.contact">Contacto</a></li>
+        <li><a href="../index.html#serveis" class="nav-link scroll-link" data-i18n="nav.services">Servicios</a></li>
+        <li><a href="../index.html#projectes" class="nav-link scroll-link" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="../index.html#metodologia" class="nav-link scroll-link" data-i18n="nav.method">Método</a></li>
+        <li><a href="../index.html#tips" class="nav-link scroll-link"><span class="i18n i18n-es">Tips</span><span class="i18n i18n-ca">Consells</span><span class="i18n i18n-en">Tips</span></a></li>
+        <li><a href="../index.html#quote" class="nav-link scroll-link" data-i18n="nav.quote">Propuesta</a></li>
+        <li><a href="../index.html#contacte" class="nav-link scroll-link" data-i18n="nav.contact">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="article" aria-label="Artículo">
     <nav class="breadcrumbs">
-      <a href="/">UtiLiX</a> /
-      <a href="/tips/"><span class="i18n i18n-es">Tips</span><span class="i18n i18n-ca">Consells</span><span class="i18n i18n-en">Tips</span></a> /
+      <a href="../">UtiLiX</a> / <a href="../index.html#tips"><span class="i18n i18n-es">Tips</span><span class="i18n i18n-ca">Consells</span><span class="i18n i18n-en">Tips</span></a> /
       <span class="i18n i18n-es">Velocidad sin plugins</span><span class="i18n i18n-ca">Velocitat sense plugins</span><span class="i18n i18n-en">Speed without plugins</span>
     </nav>
 
@@ -136,7 +135,7 @@
       <span class="i18n i18n-ca">Com millorar la velocitat de la teva web sense plugins</span>
       <span class="i18n i18n-en">How to speed up your site without plugins</span>
     </h1>
-    <div class="meta">UtiLiX · <time datetime="2025-10-15">15/10/2025</time></div>
+    <div class="meta">UtiLiX.tech · <time datetime="2025-10-15">15/10/2025</time></div>
 
     <article class="prose">
       <div class="i18n-block i18n-block-es">
@@ -177,36 +176,26 @@
     </article>
 
     <div class="cta">
-      <a class="btn outline" href="/tips/">
-        <span class="i18n i18n-es">Volver a Tips</span>
-        <span class="i18n i18n-ca">Torna a Consells</span>
-        <span class="i18n i18n-en">Back to Tips</span>
-      </a>
-      <a class="btn primary" href="/quote/" data-magnetic>
-        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
-        <span class="i18n i18n-es">Pedir propuesta</span>
-        <span class="i18n i18n-ca">Demanar proposta</span>
-        <span class="i18n i18n-en">Request proposal</span>
-      </a>
+      <a class="btn outline" href="../index.html#tips"><span class="i18n i18n-es">Volver a Tips</span><span class="i18n i18n-ca">Torna a Consells</span><span class="i18n i18n-en">Back to Tips</span></a>
+      <a class="btn primary" href="../index.html#quote" data-magnetic><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> <span class="i18n i18n-es">Pedir propuesta</span><span class="i18n i18n-ca">Demanar proposta</span><span class="i18n i18n-en">Request proposal</span></a>
     </div>
   </main>
 
-  <!-- FOOTER (coherent, rutes netes) -->
+  <!-- FOOTER (simplificat però coherent) -->
   <footer class="site-footer" aria-label="Pie de página">
     <div class="container footer-grid">
       <div class="foot-brand">
-        <a href="/" class="brand">UtiLiX</a>
+        <a href="../index.html" class="brand">UtiLiX.tech</a>
       </div>
       <nav class="foot-links" aria-label="Enlaces rápidos">
-        <a href="/tips/">Tips</a> ·
-        <a href="/projectes/">Proyectos</a> ·
-        <a href="/quote/">Propuesta</a>
+        <a href="../index.html#tips" class="scroll-link">Tips</a> ·
+        <a href="../index.html#projectes" class="scroll-link">Proyectos</a> ·
+        <a href="../index.html#quote" class="scroll-link">Propuesta</a>
       </nav>
     </div>
   </footer>
 
-  <!-- Scripts des de l'arrel -->
-  <script defer src="/script.js"></script>
+  <script defer src="../script.js"></script>
   <script src="https://kit.fontawesome.com/a2e0ad9d3b.js" crossorigin="anonymous"></script>
 </body>
 </html>
