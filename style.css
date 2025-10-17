@@ -1,35 +1,44 @@
 /* ======= Reset & variables (LIGHT ONLY) ======= */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after { **box-sizing: border-box;** } /* 🚩 Millora 1: Essencial per evitar desbordaments per padding/border */
 
 :root{
-  --bg:#f7f9fc;
-  --bg-2:#ffffff;
-  --surface:rgba(0,0,0,.04);
-  --surface-2:rgba(0,0,0,.12);
-  --text:#0c0f1a;
-  --muted:#525a7a;
-  --accent:#7c5cff;
-  --accent-2:#06d6a0;
-  --accent-3:#00bcd4;
-  --warn:#ff6b6b;
+  --bg:#f7f9fc;
+  --bg-2:#ffffff;
+  --surface:rgba(0,0,0,.04);
+  --surface-2:rgba(0,0,0,.12);
+  --text:#0c0f1a;
+  --muted:#525a7a;
+  --accent:#7c5cff;
+  --accent-2:#06d6a0;
+  --accent-3:#00bcd4;
+  --warn:#ff6b6b;
 
-  --shadow-1:0 10px 30px rgba(0,0,0,.12);
-  --radius:16px;
-  --maxw:1200px;
+  --shadow-1:0 10px 30px rgba(0,0,0,.12);
+  --radius:16px;
+  --maxw:1200px;
 
-  --font-display:"Space Grotesk",system-ui,sans-serif;
-  --font-body:"Plus Jakarta Sans",system-ui,sans-serif;
+  --font-display:"Space Grotesk",system-ui,sans-serif;
+  --font-body:"Plus Jakarta Sans",system-ui,sans-serif;
 }
 
 html{
-  scroll-behavior:smooth;
-  /* Evita que apareixi la barra vertical “de cop” i mogui el layout */
-  scrollbar-gutter: stable both-edges;
+  scroll-behavior:smooth;
+  /* Evita que apareixi la barra vertical “de cop” i mogui el layout */
+  scrollbar-gutter: stable both-edges;
 }
-html,body{ height:100%; background:var(--bg); color:var(--text); }
-body{ font-family:var(--font-body); line-height:1.5; overflow-x:hidden; }
+html,body{
+    height:100%;
+    background:var(--bg);
+    color:var(--text);
+    **max-width: 100%;** /* 🚩 Millora 2: Limitem l'amplada màxima de la pàgina */
+}
+body{
+    font-family:var(--font-body);
+    line-height:1.5;
+    overflow-x:hidden; /* Ja ho tenies, el mantenim per si de cas */
+}
 a{ color:inherit; text-decoration:none; }
 img{ max-width:100%; display:block; }
 .container{ width:min(92vw,var(--maxw)); margin-inline:auto; }
@@ -37,22 +46,22 @@ img{ max-width:100%; display:block; }
 
 /* ======= Global texture ======= */
 body::after{
-  content:""; position:fixed; inset:-40% -40% -40% -40%;
-  background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
-  background-size:3px 3px; opacity:.07; pointer-events:none; z-index:1;
+  content:""; position:fixed; inset:-40% -40% -40% -40%;
+  background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
+  background-size:3px 3px; opacity:.07; pointer-events:none; z-index:1;
 }
 .grad-text{
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  -webkit-background-clip:text; background-clip:text; color:transparent;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 
 /* ======= Buttons ======= */
 .btn{
-  display:inline-flex; align-items:center; gap:10px;
-  padding:14px 18px; border-radius:999px; font-weight:800; letter-spacing:.2px;
-  border:1px solid transparent; background:var(--accent); color:#fff; box-shadow:var(--shadow-1);
-  transition:transform .2s ease, box-shadow .2s ease, background .3s ease, border-color .3s ease;
-  cursor:pointer;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:14px 18px; border-radius:999px; font-weight:800; letter-spacing:.2px;
+  border:1px solid transparent; background:var(--accent); color:#fff; box-shadow:var(--shadow-1);
+  transition:transform .2s ease, box-shadow .2s ease, background .3s ease, border-color .3s ease;
+  cursor:pointer;
 }
 .btn.primary{ background:linear-gradient(135deg,var(--accent),#9f7bff); }
 .btn.ghost{ background:transparent; border-color:var(--surface-2); color:var(--text); }
@@ -64,17 +73,17 @@ body::after{
 /* ======= Section head ======= */
 .section-head{ text-align:center; margin-bottom:48px; }
 .section-head h2{
-  font-family:var(--font-display);
-  font-size:clamp(30px,3.4vw,52px);
-  line-height:1.06; letter-spacing:.2px; margin-bottom:10px;
+  font-family:var(--font-display);
+  font-size:clamp(30px,3.4vw,52px);
+  line-height:1.06; letter-spacing:.2px; margin-bottom:10px;
 }
 .section-head p{ color:var(--muted); }
 
 /* ======= Header & Nav ======= */
 .site-header{
-  position:fixed; inset:0 0 auto 0; z-index:50;
-  background:linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,0));
-  backdrop-filter:blur(6px);
+  position:fixed; inset:0 0 auto 0; z-index:50;
+  background:linear-gradient(to bottom, rgba(255,255,255,.85), rgba(255,255,255,0));
+  backdrop-filter:blur(6px);
 }
 .header-inner{ display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; padding:14px 0; }
 .brand{ font-weight:900; letter-spacing:.5px; font-size:1.1rem; opacity:.95; font-family:var(--font-display); }
@@ -91,15 +100,15 @@ body::after{
 
 /* Hamburguer */
 .hamburger{
-  justify-self:center; width:56px; height:56px; border-radius:50%;
-  border:1px solid var(--surface-2); background:#fff; box-shadow:var(--shadow-1);
-  display:grid; place-items:center; cursor:pointer; position:relative; overflow:hidden;
+  justify-self:center; width:56px; height:56px; border-radius:50%;
+  border:1px solid var(--surface-2); background:#fff; box-shadow:var(--shadow-1);
+  display:grid; place-items:center; cursor:pointer; position:relative; overflow:hidden;
 }
 .hamburger-label{ position:absolute; inset:auto 0 -18px 0; text-align:center; font-size:.7rem; color:var(--muted); }
 .hamburger-box{ display:grid; place-items:center; width:28px; height:28px; }
 .hamburger-inner,.hamburger-inner::before,.hamburger-inner::after{
-  content:""; display:block; width:24px; height:2px; background:#111; border-radius:2px;
-  transition:transform .35s ease, opacity .35s ease;
+  content:""; display:block; width:24px; height:2px; background:#111; border-radius:2px;
+  transition:transform .35s ease, opacity .35s ease;
 }
 .hamburger-inner::before{ transform:translateY(-7px); }
 .hamburger-inner::after{ transform:translateY(7px); }
@@ -110,43 +119,43 @@ body.nav-open .hamburger-inner::after{ opacity:0; transform:translateY(0) rotate
 
 /* Dim + overlay clar i llegible */
 .nav-dim{
-  position:fixed; inset:0; background:rgba(255,255,255,.65);
-  backdrop-filter:blur(10px) saturate(120%); opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:48;
+  position:fixed; inset:0; background:rgba(255,255,255,.65);
+  backdrop-filter:blur(10px) saturate(120%); opacity:0; pointer-events:none; transition:opacity .35s ease; z-index:48;
 }
 body.nav-open .nav-dim{ opacity:1; pointer-events:auto; }
 
 .nav-overlay{
-  position:fixed; inset:80px 50% auto 50%;
-  transform:translate(-50%,0) perspective(1000px) rotateX(-90deg) scale(.9);
-  transform-origin:top center; width:min(92vw,860px);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.95)),
-    radial-gradient(120% 160% at 0% 0%, rgba(124,92,255,.12), transparent 40%),
-    radial-gradient(120% 160% at 100% 100%, rgba(6,214,160,.12), transparent 40%);
-  border:1px solid rgba(0,0,0,.08); border-radius:20px; backdrop-filter:blur(16px) saturate(130%);
-  opacity:0; pointer-events:none; transition:transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease; box-shadow:0 40px 120px rgba(0,0,0,.12); z-index:49;
-} 
+  position:fixed; inset:80px 50% auto 50%;
+  transform:translate(-50%,0) perspective(1000px) rotateX(-90deg) scale(.9);
+  transform-origin:top center; width:min(92vw,860px);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(255,255,255,.95)),
+    radial-gradient(120% 160% at 0% 0%, rgba(124,92,255,.12), transparent 40%),
+    radial-gradient(120% 160% at 100% 100%, rgba(6,214,160,.12), transparent 40%);
+  border:1px solid rgba(0,0,0,.08); border-radius:20px; backdrop-filter:blur(16px) saturate(130%);
+  opacity:0; pointer-events:none; transition:transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s ease; box-shadow:0 40px 120px rgba(0,0,0,.12); z-index:49;
+} 
 
 /* Configuració Base per als Enllaços del Menú Overlay */
 .nav-overlay .nav-link {
-    /* Assegurem que el text del menú no sigui transparent per defecte */
-    color: var(--color-primary, #1f2937); 
-    transition: all 0.5s ease-in-out; 
-    display: inline-block;
-    /* Pots afegir aquí altres estils (mida de font, padding, etc.) */
+    /* Assegurem que el text del menú no sigui transparent per defecte */
+    color: var(--color-primary, #1f2937); 
+    transition: all 0.5s ease-in-out; 
+    display: inline-block;
+    /* Pots afegir aquí altres estils (mida de font, padding, etc.) */
 }
 
 /* 🎯 Estat HOVER: Apliquem el Degradat Només a les Lletres del Menú Overlay */
 .nav-overlay .nav-link:hover {
-    /* 1. Apliquem el degradat com a fons */
-    background: linear-gradient(90deg, #7c5cff, #06d6a0);
-    
-    /* 2. Retallem el fons només a la forma del text */
-    -webkit-background-clip: text; 
-    background-clip: text;
-    
-    /* 3. Fem el color del text transparent per mostrar el fons retallat */
-    color: transparent; 
+    /* 1. Apliquem el degradat com a fons */
+    background: linear-gradient(90deg, #7c5cff, #06d6a0);
+    
+    /* 2. Retallem el fons només a la forma del text */
+    -webkit-background-clip: text; 
+    background-clip: text;
+    
+    /* 3. Fem el color del text transparent per mostrar el fons retallat */
+    color: transparent; 
 }
 
 .nav-list{ list-style:none; margin:0; padding:22px; display:grid; gap:6px; text-align:center; }
@@ -160,11 +169,11 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 
 .hero{ min-height:100svh; display:grid; place-items:center; padding-top:110px; position:relative; }
 #hero-bg{
-  position:absolute; inset:0; z-index:-1;
-  background:linear-gradient(180deg,#eef2ff 0%, #ffffff 60%);
+  position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg,#eef2ff 0%, #ffffff 60%);
 }
 #hero-bg::before, #hero-bg::after{
-  content:""; position:absolute; width:60vw; height:60vw; border-radius:50%; filter:blur(60px); opacity:.55; pointer-events:none;
+  content:""; position:absolute; width:60vw; height:60vw; border-radius:50%; filter:blur(60px); opacity:.55; pointer-events:none;
 }
 #hero-bg::before{ top:-20%; left:-10%; background:radial-gradient(circle at 40% 40%, rgba(124,92,255,.25), transparent 60%); animation:float1 18s ease-in-out infinite; }
 #hero-bg::after { bottom:-22%; right:-12%; background:radial-gradient(circle at 60% 60%, rgba(6,214,160,.20), transparent 60%); animation:float2 22s ease-in-out infinite; }
@@ -172,54 +181,54 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 @keyframes float2{ 0%,100%{ transform:translate(0,0) } 50%{ transform:translate(0,20px) scale(1.05) } }
 
 .hero-inner{
-  text-align:center; display:grid; gap:20px;
-  /* >>> centre real i evita “estirar-se” cap a cap banda */
-  place-items:center;
+  text-align:center; display:grid; gap:20px;
+  /* >>> centre real i evita “estirar-se” cap a cap banda */
+  place-items:center;
 }
 
 /* ======= HEADLINE — estable, sense salts ======= */
 .headline{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-size:clamp(42px,7vw,88px);
-  line-height:1.04;
-  letter-spacing:.2px;
-  display:flex;
-  align-items:baseline;
-  justify-content:center;
-  gap:.4ch;
-  flex-wrap:nowrap;   /* desktop: una sola línia si cap */
-  text-align:center;
-  max-width:min(92vw, var(--maxw)); /* mai no pot ser més ampla que el contenidor */
-  margin-inline:auto;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(42px,7vw,88px);
+  line-height:1.04;
+  letter-spacing:.2px;
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:.4ch;
+  flex-wrap:nowrap;   /* desktop: una sola línia si cap */
+  text-align:center;
+  max-width:min(92vw, var(--maxw)); /* mai no pot ser més ampla que el contenidor */
+  margin-inline:auto;
 }
 .headline-prefix{ display:inline-block; margin-right:0; }
 .headline-dynamic{
-  display:inline-block;
-  white-space:nowrap;   /* no wrap mentre escriu (en mode una línia) */
-  min-height:1em;       /* evita “bot” vertical */
-  max-width:100%;
-  will-change:contents; /* petits guanys de perf */
+  display:inline-block;
+  white-space:nowrap;   /* no wrap mentre escriu (en mode una línia) */
+  min-height:1em;       /* evita “bot” vertical */
+  max-width:100%;
+  will-change:contents; /* petits guanys de perf */
 }
 
 /* Mode “stack” forçat quan no cap en una línia (JS afegeix la classe) */
 .headline--stack{
-  flex-direction:column;
-  gap:6px;
-  align-items:center;
+  flex-direction:column;
+  gap:6px;
+  align-items:center;
 }
 .headline--stack .headline-dynamic{
-  width:100% !important;
-  min-width:0 !important;
-  white-space:normal;   /* permet 2 línies */
-  text-wrap:balance;    /* repartiment visual de paraules */
-  min-height:2.4em;     /* reserva alçada per 2 línies -> 0 salts */
+  width:100% !important;
+  min-width:0 !important;
+  white-space:normal;   /* permet 2 línies */
+  text-wrap:balance;    /* repartiment visual de paraules */
+  min-height:2.4em;     /* reserva alçada per 2 línies -> 0 salts */
 }
 
 /* En pantalles molt estretes, força “stack” visualment */
 @media (max-width:700px){
-  .headline{ flex-direction:column; gap:6px; }
-  .headline-dynamic{ width:100% !important; min-width:0 !important; text-align:center; }
+  .headline{ flex-direction:column; gap:6px; }
+  .headline-dynamic{ width:100% !important; min-width:0 !important; text-align:center; }
 }
 
 .subhead{ color:var(--muted); max-width:820px; margin:0 auto; }
@@ -227,10 +236,10 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 
 /* Imatge amb Ken‑Burns lleuger */
 .hero-media{
-  width:min(900px,88vw); margin:26px auto 0; aspect-ratio:16/9; border-radius:22px; overflow:hidden; position:relative;
-  border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 80px rgba(0,0,0,.10);
-  background:var(--bg-2) center/cover no-repeat; background-image:var(--hero);
-  transform:translateZ(0); animation:ken 16s ease-in-out infinite;
+  width:min(900px,88vw); margin:26px auto 0; aspect-ratio:16/9; border-radius:22px; overflow:hidden; position:relative;
+  border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 80px rgba(0,0,0,.10);
+  background:var(--bg-2) center/cover no-repeat; background-image:var(--hero);
+  transform:translateZ(0); animation:ken 16s ease-in-out infinite;
 }
 @keyframes ken{ 0%{ transform:scale(1) } 50%{ transform:scale(1.06) translateY(-6px) } 100%{ transform:scale(1) } }
 
@@ -241,20 +250,20 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 
 /* ======= SERVEIS ======= */
 .services-grid{
-  display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
-  gap:18px;
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:18px;
 }
 .service-card{
-  position:relative; border-radius:var(--radius);
-  border:1px solid var(--surface-2); background:#fff; padding:22px; overflow:hidden;
-  box-shadow:var(--shadow-1); transform-style:preserve-3d; contain:paint;
-  --glow-rot:0deg; --glow-opacity:.18;
+  position:relative; border-radius:var(--radius);
+  border:1px solid var(--surface-2); background:#fff; padding:22px; overflow:hidden;
+  box-shadow:var(--shadow-1); transform-style:preserve-3d; contain:paint;
+  --glow-rot:0deg; --glow-opacity:.18;
 }
 .service-card::before{
-  content:""; position:absolute; inset:-45%;
-  background:conic-gradient(from 0deg, rgba(124,92,255,.55), rgba(6,214,160,.55), rgba(0,188,212,.55), rgba(255,107,107,.55), rgba(124,92,255,.55));
-  filter:blur(50px); transform:rotate(var(--glow-rot)); opacity:var(--glow-opacity);
-  animation:spin 26s linear infinite;
+  content:""; position:absolute; inset:-45%;
+  background:conic-gradient(from 0deg, rgba(124,92,255,.55), rgba(6,214,160,.55), rgba(0,188,212,.55), rgba(255,107,107,.55), rgba(124,92,255,.55));
+  filter:blur(50px); transform:rotate(var(--glow-rot)); opacity:var(--glow-opacity);
+  animation:spin 26s linear infinite;
 }
 .service-card .icon{ font-size:28px; margin-bottom:6px; color:#000; filter:drop-shadow(0 8px 26px rgba(124,92,255,.15)); }
 .service-card h3{ margin:6px 0 6px; font-size:1.2rem; font-family:var(--font-display); }
@@ -266,23 +275,23 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 /* ======= PROJECTES (scroll-snap natiu) ======= */
 .projects .projects-swiper{ padding:30px 0 60px; position:relative; }
 .projects .swiper-wrapper{
-  display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:10px 0 30px;
-  -webkit-overflow-scrolling: touch;
+  display:flex; gap:18px; overflow-x:auto; scroll-snap-type:x mandatory; padding:10px 0 30px;
+  -webkit-overflow-scrolling: touch;
 }
 .swiper-slide.project-card{
-  scroll-snap-align:center;
-  flex: 0 0 clamp(260px,38vw,420px);
-  height: clamp(320px, 44vw, 520px);
-  border-radius:24px; overflow:hidden; position:relative;
-  border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 60px rgba(0,0,0,.10);
-  background:#fff;
+  scroll-snap-align:center;
+  flex: 0 0 clamp(260px,38vw,420px);
+  height: clamp(320px, 44vw, 520px);
+  border-radius:24px; overflow:hidden; position:relative;
+  border:1px solid rgba(0,0,0,.08); box-shadow:0 30px 60px rgba(0,0,0,.10);
+  background:#fff;
 }
 .project-media{ position:absolute; inset:0; background-image:var(--bg); background-size:cover; background-position:center; }
 
 .project-info{
-  position:absolute; inset:auto 0 0 0; padding:18px; backdrop-filter:blur(6px);
-  background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.9));
-  color:#111;
+  position:absolute; inset:auto 0 0 0; padding:18px; backdrop-filter:blur(6px);
+  background:linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.9));
+  color:#111;
 }
 .project-info h3{ margin:0 0 6px; font-family:var(--font-display); }
 .project-info p{ margin:0 0 12px; color:#333; }
@@ -291,58 +300,58 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 
 /* REGLA GENERAL ÚNICA (amb la transició inclosa) */
 .swiper-button-prev, .swiper-button-next{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    border:1px solid rgba(0,0,0,.12);
-    background:rgba(255,255,255,.9);
-    backdrop-filter:blur(6px);
-    cursor:pointer;
-    /* 🚀 Transició per suavitzar el hover o canvis */
-    transition: all 0.3s ease; 
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid rgba(0,0,0,.12);
+    background:rgba(255,255,255,.9);
+    backdrop-filter:blur(6px);
+    cursor:pointer;
+    /* 🚀 Transició per suavitzar el hover o canvis */
+    transition: all 0.3s ease; 
 }
 
-.swiper-button-prev{ 
-    left:-6px; 
+.swiper-button-prev{ 
+    left:-6px; 
 }
-.swiper-button-next{ 
-    right:-6px; 
+.swiper-button-next{ 
+    right:-6px; 
 }
 
 
 /* 1. Estils per a les fletxes (comuns per a ambdós botons) */
 .swiper-button-prev::after,
 .swiper-button-next::after {
-    /* Assegura que la fletxa es pugui veure */
-    display: block;
-    /* Centrem la fletxa dins del cercle */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Defineix la mida de la fletxa i el color */
-    font-size: 1.2rem;
-    font-weight: 900; /* Per fer-la més visible */
-    color: #1f2937; /* El teu color primari fosc */
-    transition: all 0.3s ease; /* També afegim transició a la fletxa mateixa */
+    /* Assegura que la fletxa es pugui veure */
+    display: block;
+    /* Centrem la fletxa dins del cercle */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Defineix la mida de la fletxa i el color */
+    font-size: 1.2rem;
+    font-weight: 900; /* Per fer-la més visible */
+    color: #1f2937; /* El teu color primari fosc */
+    transition: all 0.3s ease; /* També afegim transició a la fletxa mateixa */
 }
 
 /* 2. Fletxa esquerra (Previous) */
 .swiper-button-prev::after {
-    /* Caràcter Unicode per a una fletxa cap a l'esquerra (símbol d'angle) */
-    content: '\2039'; 
+    /* Caràcter Unicode per a una fletxa cap a l'esquerra (símbol d'angle) */
+    content: '\2039'; 
 }
 
 /* 3. Fletxa dreta (Next) */
 .swiper-button-next::after {
-    /* Caràcter Unicode per a una fletxa cap a la dreta (símbol d'angle) */
-    content: '\203A'; 
+    /* Caràcter Unicode per a una fletxa cap a la dreta (símbol d'angle) */
+    content: '\203A'; 
 }
 
-/* ======= METODO ======= */
+/* ======= METODE ======= */
 .method-grid{ display:grid; grid-template-columns:1.1fr .9fr; align-items:center; gap:36px; }
 .method-copy .steps{ margin:12px 0 0 18px; color:var(--muted); display:grid; gap:8px; }
 .method-visual{ position:relative; min-height:320px; border:1px solid var(--surface-2); border-radius:22px; background:radial-gradient(120% 140% at 30% 0, rgba(124,92,255,.15), transparent 42%), #fff; overflow:hidden; }
@@ -359,62 +368,62 @@ body.nav-open .nav-overlay{ opacity:1; pointer-events:auto; transform:translate(
 .field label{ display:block; margin-bottom:8px; font-weight:800; font-family:var(--font-display); }
 .chips{ display:flex; flex-wrap:wrap; gap:8px; }
 .chip{
-  padding:8px 12px; border-radius:999px; border:1px solid var(--surface-2);
-  background:rgba(0,0,0,.06); cursor:pointer; font-weight:800; font-family:var(--font-display);
+  padding:8px 12px; border-radius:999px; border:1px solid var(--surface-2);
+  background:rgba(0,0,0,.06); cursor:pointer; font-weight:800; font-family:var(--font-display);
 }
 .chip.selected{ border-color:var(--accent); box-shadow:0 0 0 2px rgba(124,92,255,.25) inset; }
 
 .field.grid-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:10px 12px; }
 textarea, input[type="text"], input[type="email"]{
-  width:100%; background:rgba(0,0,0,.04); border:1px solid var(--surface-2);
-  color:var(--text); border-radius:12px; padding:12px 14px; outline:none;
+  width:100%; background:rgba(0,0,0,.04); border:1px solid var(--surface-2);
+  color:var(--text); border-radius:12px; padding:12px 14px; outline:none;
 }
 textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 
 .quote .estimate{
-  display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap;
-  margin-top:8px; padding-top:12px; border-top:1px dashed rgba(0,0,0,.12);
+  display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  margin-top:8px; padding-top:12px; border-top:1px dashed rgba(0,0,0,.12);
 }
 .hint-quiet{ color:var(--muted); }
 
-/*  WHATSAPP*/
+/*  WHATSAPP*/
 .whatsapp-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 5px;
-  font-size: 16px;
-  color: white;
-  background-color: transparent; /* Color de fondo verde de WhatsApp */
-  border: none;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 5px;
+  font-size: 16px;
+  color: white;
+  background-color: transparent; /* Color de fondo verde de WhatsApp */
+  border: none;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
 
-  /* Posicionamiento fijo */
-  position: fixed;
-  bottom: 16px; /* Distancia desde la parte inferior de la ventana */
-  right: 45px;  /* Distancia desde el lado derecho de la ventana */
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
+  /* Posicionamiento fijo */
+  position: fixed;
+  bottom: 16px; /* Distancia desde la parte inferior de la ventana */
+  right: 45px;  /* Distancia desde el lado derecho de la ventana */
+  z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
 
 .whatsapp-button img {
-  width: 40px;
-  height: 40px;
-  margin-right: 0px;
+  width: 40px;
+  height: 40px;
+  margin-right: 0px;
 }
 
 .whatsapp-button:hover {
-  background-color: #20b358; /* Un poco más oscuro al pasar el ratón */
-  transform: scale(1.35); /* Aumenta ligeramente el tamaño */
+  background-color: #20b358; /* Un poco más oscuro al passar el ratón */
+  transform: scale(1.35); /* Aumenta ligeramente el tamaño */
 }
 
 /* ======= FOOTER ======= */
 .site-footer{ position:relative; background:var(--bg-2); overflow:hidden; }
 .footer-bg{ position:absolute; inset:0; background:
-  radial-gradient(80% 60% at 10% 0%, rgba(124,92,255,.12), transparent 60%),
-  radial-gradient(80% 60% at 100% 100%, rgba(6,214,160,.12), transparent 60%);}
+  radial-gradient(80% 60% at 10% 0%, rgba(124,92,255,.12), transparent 60%),
+  radial-gradient(80% 60% at 100% 100%, rgba(6,214,160,.12), transparent 60%);}
 .footer-grid{ position:relative; display:grid; grid-template-columns:1.2fr .8fr .8fr; gap:20px; padding:64px 0 40px; }
 .foot-brand .brand{ font-size:1.5rem; font-family:var(--font-display);font-weight:1000; background:linear-gradient(90deg,#7c5cff,#06d6a0); -webkit-background-clip:text; background-clip:text; color:transparent; }
 .foot-brand p{ color:var(--muted); margin-top:10px; }
@@ -430,22 +439,22 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 
 /* Configuració Base: Assegurem que l'enllaç pugui rebre l'efecte */
 .foot-links .scroll-link {
-    color: #a0aec0; /* Color inicial (ajusta aquest valor si cal) */
-    transition: all 0.5s ease-in-out; /* Per a una transició suau de l'efecte */
-    display: inline-block; /* Crucial perquè funcioni background-clip: text */
+    color: #a0aec0; /* Color inicial (ajusta aquest valor si cal) */
+    transition: all 0.5s ease-in-out; /* Per a una transició suau de l'efecte */
+    display: inline-block; /* Crucial perquè funcioni background-clip: text */
 }
 
 /* 🎯 Estat HOVER: Apliquem el Degradat Només a les Lletres */
 .foot-links .scroll-link:hover {
-    /* 1. Apliquem el degradat com a fons */
-    background: linear-gradient(90deg, #7c5cff, #06d6a0);
-    
-    /* 2. Retallem el fons només a la forma del text */
-    -webkit-background-clip: text; /* Per a Chrome/Safari/Edge */
-    background-clip: text;
-    
-    /* 3. Fem el color del text transparent per mostrar el fons retallat */
-    color: transparent; 
+    /* 1. Apliquem el degradat com a fons */
+    background: linear-gradient(90deg, #7c5cff, #06d6a0);
+    
+    /* 2. Retallem el fons només a la forma del text */
+    -webkit-background-clip: text; /* Per a Chrome/Safari/Edge */
+    background-clip: text;
+    
+    /* 3. Fem el color del text transparent per mostrar el fons retallat */
+    color: transparent; 
 }
 
 .subfooter{ position:relative; display:flex; align-items:center; justify-content:space-between; gap:10px; padding:16px 0; border-top:1px solid rgba(0,0,0,.12); color:var(--muted); }
@@ -456,38 +465,38 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 [data-magnetic]{ position:relative; will-change:transform; }
 :focus-visible{ outline:2px dashed var(--accent); outline-offset:3px; }
 
-/* ======= Preloader ======= 
+/* ======= Preloader ======= 
 .preloader{
-  position:fixed; inset:0; z-index:1000; display:grid; place-items:center;
-  background: radial-gradient(120% 120% at 50% 10%, rgba(124,92,255,.12), rgba(6,214,160,.10), transparent 70%), var(--bg);
+  position:fixed; inset:0; z-index:1000; display:grid; place-items:center;
+  background: radial-gradient(120% 120% at 50% 10%, rgba(124,92,255,.12), rgba(6,214,160,.10), transparent 70%), var(--bg);
 }
 .preloader-inner{ position:relative; width:160px; height:160px; display:grid; place-items:center; }
 .preloader .ring{
-  position:absolute; inset:0; border-radius:50%;
-  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
-  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 55%, #000 56%);
-          mask: radial-gradient(circle at 50% 50%, transparent 55%, #000 56%);
-  animation: spin 1.6s linear infinite; filter: blur(1px) saturate(1.2);
+  position:absolute; inset:0; border-radius:50%;
+  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), var(--accent-3), var(--accent));
+  -webkit-mask: radial-gradient(circle at 50% 50%, transparent 55%, #000 56%);
+          mask: radial-gradient(circle at 50% 50%, transparent 55%, #000 56%);
+  animation: spin 1.6s linear infinite; filter: blur(1px) saturate(1.2);
 }
 .preloader .monogram{ font-family:var(--font-display); font-weight:800; letter-spacing:.5px; font-size:42px; }
 .preloader .monogram span{ color: var(--accent-2); }
 .preloader .progress{ position:absolute; bottom:-26px; font-family:var(--font-display); color:var(--muted); }
 */
 /* ===========================
-   UtiLiX — Responsive Add-ons
-   (enganxa-ho al FINAL de style.css)
-   =========================== */
+   UtiLiX — Responsive Add-ons
+   (enganxa-ho al FINAL de style.css)
+   =========================== */
 
 /* 0) Variables d’alçada de header per compensar anchors (#) */
 :root{
-  --hdr: 88px;     /* desktop approx */
-  --hdr-sm: 64px;  /* mobile approx */
+  --hdr: 88px;     /* desktop approx */
+  --hdr-sm: 64px;  /* mobile approx */
 }
 
 /* Evita que el header fixed tapi el contingut quan vas a #serveis, #quote, etc. */
 [id] { scroll-margin-top: var(--hdr); }
 @media (max-width: 768px){
-  [id] { scroll-margin-top: var(--hdr-sm); }
+  [id] { scroll-margin-top: var(--hdr-sm); }
 }
 
 /* 1) Contenidors i tipografies fluides extra segures */
@@ -497,62 +506,62 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 
 /* 2) Hero – reforç per a pantalles estretes */
 @media (max-width: 700px){
-  .hero { padding-top: 96px; } /* deixa aire sota el header fixed */
-  .headline { flex-direction: column; gap: 6px; text-align: center; }
-  .headline-prefix, .headline-dynamic { white-space: normal; text-wrap: balance; }
+  .hero { padding-top: 96px; } /* deixa aire sota el header fixed */
+  .headline { flex-direction: column; gap: 6px; text-align: center; }
+  .headline-prefix, .headline-dynamic { white-space: normal; text-wrap: balance; }
 }
 
 /* 3) Header i menú overlay en mòbil */
 @media (max-width: 980px){
-  /* Amaga CTA de desktop i prepara la hamburguesa (ja tens l’estil base fet) */
-  .only-desktop{ display: none !important; }
+  /* Amaga CTA de desktop i prepara la hamburguesa (ja tens l’estil base fet) */
+  .only-desktop{ display: none !important; }
 
-  /* Fes el menú overlay a pantalla completa i fàcil de clicar */
-  .nav-overlay{
-    inset: var(--hdr-sm) 0 auto 0;        /* ocupa ample complet */
-    width: 100%;
-    transform: translateY(-100%);         /* amagat a dalt */
-    border-radius: 0; box-shadow: none;
-  }
-  body.nav-open .nav-overlay{ transform: translateY(0); }
+  /* Fes el menú overlay a pantalla completa i fàcil de clicar */
+  .nav-overlay{
+    inset: var(--hdr-sm) 0 auto 0;        /* ocupa ample complet */
+    width: 100%;
+    transform: translateY(-100%);         /* amagat a dalt */
+    border-radius: 0; box-shadow: none;
+  }
+  body.nav-open .nav-overlay{ transform: translateY(0); }
 
-  .nav-list{ gap: 10px; padding: 16px; }
-  .nav-link{ font-size: clamp(20px, 4vw, 28px); padding: 14px 18px; }
+  .nav-list{ gap: 10px; padding: 16px; }
+  .nav-link{ font-size: clamp(20px, 4vw, 28px); padding: 14px 18px; }
 }
 
 /* 4) Grilles (serveis, tips, projectes) — ja responsives, però polit de gaps */
 @media (min-width: 720px){
-  .services-grid{ gap: 20px; }
+  .services-grid{ gap: 20px; }
 }
 @media (min-width: 1024px){
-  .services-grid{ gap: 24px; }
+  .services-grid{ gap: 24px; }
 }
 
 /* 5) Projectes: botons del carrusel i targeta */
 @media (max-width: 640px){
-  .swiper-slide.project-card{
-    flex-basis: clamp(260px, 84vw, 400px);
-    height: auto; min-height: 320px;
-  }
-  .swiper-button-prev, .swiper-button-next{
-    width: 38px; height: 38px; top: auto; bottom: 6px;
-  }
-  .swiper-button-prev{ left: 8px; }
-  .swiper-button-next{ right: 8px; }
+  .swiper-slide.project-card{
+    flex-basis: clamp(260px, 84vw, 400px);
+    height: auto; min-height: 320px;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    width: 38px; height: 38px; top: auto; bottom: 6px;
+  }
+  .swiper-button-prev{ left: 8px; }
+  .swiper-button-next{ right: 8px; }
 }
 
 /* 6) Mètode i Footer a una columna en mòbil */
 @media (max-width: 920px){
-  .method-grid{ grid-template-columns: 1fr; gap: 24px; }
+  .method-grid{ grid-template-columns: 1fr; gap: 24px; }
 }
 @media (max-width: 800px){
-  .footer-grid{ grid-template-columns: 1fr; gap: 18px; padding: 48px 0 32px; }
-  .subfooter{ flex-direction: row; gap: 8px; }
+  .footer-grid{ grid-template-columns: 1fr; gap: 18px; padding: 48px 0 32px; }
+  .subfooter{ flex-direction: row; gap: 8px; }
 }
 
 /* 7) Formulari (quote) — inputs a una sola columna en pantalles petites */
 @media (max-width: 640px){
-  .field.grid-2{ grid-template-columns: 1fr !important; }
+  .field.grid-2{ grid-template-columns: 1fr !important; }
 }
 
 /* 8) Botoneria i CTA: que no trenquin i s’ajustin */
@@ -561,11 +570,10 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 
 /* 9) WhatsApp flotant: ajust en pantalles petites */
 @media (max-width: 480px){
-  .whatsapp-button{ right: 16px; bottom: 14px; }
+  .whatsapp-button{ right: 16px; bottom: 14px; }
 }
 
 /* 10) Accessibilitat: si l’usuari prefereix menys moviment */
 @media (prefers-reduced-motion: reduce){
-  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
-
