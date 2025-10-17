@@ -475,126 +475,140 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 */
 
 /* ===========================
-   📱 Responsive — UtiLiX
-   (enganxa AQUEST BLOC al FINAL de style.css)
+   UtiLiX — Responsive Add-ons
+   (enganxa-ho al FINAL de style.css)
    =========================== */
 
-/* Base: contenidor i tipografia flexible */
+/* 1) Tipografies fluides i seccions amb padding adaptatiu */
 :root{
-  --container-max: 1200px;
-  --gap: 24px;
+  --header-h: 80px;           /* desktop approx */
+  --header-h-sm: 64px;        /* mobile approx */
+  --container-px: 24px;
 }
-.container{max-width:var(--container-max); margin:0 auto; padding:0 20px}
-.section{padding: clamp(56px, 9vw, 96px) 0}
-h1,h2{line-height:1.15}
-p{line-height:1.7}
-
-/* Evitar que el header tapi l’inici de cada secció quan es fa scroll a anchors */
-[id]{scroll-margin-top: 84px}
-
-/* Header */
-.site-header{
-  position: sticky; top:0; z-index:1000; backdrop-filter: blur(8px);
-  background: color-mix(in srgb, var(--page-bg, #ffffff) 70%, transparent);
-  border-bottom: 1px solid rgba(17,24,39,.06);
+html { scroll-behavior: smooth; }
+.section { padding: clamp(48px, 8vh, 96px) 0; }
+.section .section-title { 
+  font-size: clamp(1.6rem, 1.2rem + 2vw, 2.6rem);
+  line-height: 1.15;
 }
-.header-inner{display:flex; align-items:center; justify-content:space-between; gap:12px}
-.brand{font-family:var(--font-display,"Space Grotesk",system-ui); font-weight:700; text-decoration:none}
-.lang-switch{display:flex; gap:6px}
-.lang-switch .lang{padding:6px 10px; border-radius:10px; line-height:1}
-.lang-switch .lang.is-active{outline:2px solid rgba(109,40,217,.25)}
 
-/* Menú overlay (mòbil) */
-.hamburger{display:none}
-.nav-overlay{display:flex; gap:16px}
-.nav-overlay .nav-list{display:flex; gap:16px; align-items:center}
+/* 2) Evitar que el header tapi el contingut quan navegues a #àncores */
+[id] { scroll-margin-top: var(--header-h); }
+@media (max-width: 768px) {
+  [id] { scroll-margin-top: var(--header-h-sm); }
+}
 
-/* Grilles principals */
-.services .services-grid,
+/* 3) Contenidor i elements base responsius */
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--container-px); }
+img, video { max-width: 100%; height: auto; }
+
+/* 4) HERO: títols i subtítol fluids */
+.hero .headline { 
+  font-size: clamp(2rem, 1.4rem + 3vw, 3.4rem);
+}
+.hero .subhead {
+  font-size: clamp(1.05rem, 0.95rem + 0.6vw, 1.25rem);
+  max-width: 60ch;
+}
+
+/* 5) Botoneria: millores d’ajust i trencaments de línia */
+.btn { white-space: nowrap; }
+.cta { flex-wrap: wrap; gap: 12px; }
+
+/* 6) Grilles responsives genèriques (serveis, tips, projectes) */
+.services-grid,
 .tips-grid,
-.projects .projects-swiper .swiper-wrapper,
-.projects-grid,
-.footer-grid{display:grid; gap:var(--gap)}
-
-/* Projectes quan no hi ha swiper actiu */
-.projects .projects-swiper .swiper-wrapper{grid-template-columns: repeat(3, minmax(0,1fr))}
-.projects .project-card{height:100%}
-
-/* Mètode */
-.method .method-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap: clamp(20px, 4vw, 48px)}
-
-/* Formulari */
-.quote .quote-form .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
-
-/* Footer */
-.footer-grid{grid-template-columns: 1.2fr .9fr .9fr; align-items:start}
-
-/* ------------------- */
-/* Breakpoint ≤ 1280px */
-/* ------------------- */
-@media (max-width: 1280px){
-  :root{ --container-max: 1080px }
-  .projects .projects-swiper .swiper-wrapper{grid-template-columns: repeat(2, minmax(0,1fr))}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 16px;
+}
+@media (min-width: 720px) {
+  .services-grid,
+  .tips-grid,
+  .projects-grid { gap: 20px; }
+}
+@media (min-width: 1024px) {
+  .services-grid,
+  .tips-grid,
+  .projects-grid { gap: 24px; }
 }
 
-/* ------------------- */
-/* Breakpoint ≤ 1024px */
-/* ------------------- */
-@media (max-width: 1024px){
-  .projects .projects-swiper .swiper-wrapper{grid-template-columns: 1fr}
-  .footer-grid{grid-template-columns: 1fr 1fr}
-  .method .method-grid{grid-template-columns: 1fr}
-  .only-desktop{display:none !important}
+/* 7) Targetes: marges, llegibilitat i aspect-ratio d’imatges de projecte */
+.service-card,
+.tip-card,
+.project-card {
+  border-radius: 16px;
+}
+.project-media { 
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
 }
 
-/* ------------------- */
-/* Breakpoint ≤ 820px  */
-/* ------------------- */
-@media (max-width: 820px){
-  /* Activa hamburguesa + overlay */
-  .hamburger{display:inline-flex; align-items:center; gap:8px}
-  .nav-overlay{
-    position: fixed; inset: 64px 0 0 0; display:block;
-    transform: translateY(-8px); opacity:0; pointer-events:none;
-    transition: opacity .18s ease, transform .18s ease;
-    background: var(--page-bg, #fff);
-    padding: 12px 20px 24px;
-  }
-  body.nav-open .nav-overlay{opacity:1; transform:none; pointer-events:auto}
-  .nav-overlay .nav-list{display:grid; gap:10px}
-  .nav-overlay .nav-link{display:block; padding:12px 10px; border-radius:12px}
-  .nav-overlay .nav-link:is(:hover,:focus){background: rgba(17,24,39,.04)}
+/* 8) Header responsive (mantenint el teu estil) */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(120%) blur(8px);
+  background: color-mix(in oklab, #ffffff 86%, transparent);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.lang-switch { display: inline-flex; gap: 6px; }
+.lang-switch .lang { padding: 6px 10px; font-size: .9rem; line-height: 1; border-radius: 10px; }
+.hamburger { display: none; }
 
-  /* llengües més compactes */
-  .lang-switch .lang{padding:6px 8px; min-width:42px}
-
-  /* grilles */
-  .services .services-grid{grid-template-columns: 1fr 1fr}
-  .tips-grid{grid-template-columns: 1fr 1fr}
-  .footer-grid{grid-template-columns: 1fr}
-  .quote .quote-form .grid-2{grid-template-columns: 1fr}
+@media (max-width: 980px) {
+  .hamburger { display: inline-flex; }
+  .header-cta .only-desktop { display: none !important; }
 }
 
-/* ------------------- */
-/* Breakpoint ≤ 560px  */
-/* ------------------- */
-@media (max-width: 560px){
-  h1{font-size: clamp(26px, 7vw, 34px)}
-  h2{font-size: clamp(22px, 5.6vw, 28px)}
-  .services .services-grid,
-  .tips-grid{grid-template-columns: 1fr}
-  .btn.big{width:100%}
-  .chips{grid-auto-flow: row; gap:8px}
-  .chip{min-width: unset}
-  .project-media{aspect-ratio: 16/10}
-  .quote .quote-toggle{width:100%}
+/* 9) Menú overlay per a mòbil (evitar que tapi clics) */
+.nav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(255,255,255,.98);
+  transform: translateY(-100%);
+  transition: transform .28s ease;
+  padding: calc(var(--header-h-sm) + 8px) var(--container-px) 24px;
+}
+.nav-overlay .nav-list { display: grid; gap: 14px; }
+.nav-overlay .nav-link { font-size: 1.1rem; }
+
+.nav-dim { display: none; }
+body.nav-open .nav-overlay { transform: translateY(0); }
+body.nav-open { overflow: hidden; }
+
+/* 10) Mides de header (per al scroll-margin-top) */
+@media (max-width: 768px) {
+  :root { --header-h: var(--header-h-sm); }
 }
 
-/* Accessibilitat i detalls tàctils */
-@media (hover:none){
-  .btn, .chip, .nav-link{min-height:44px}
-  .lang-switch .lang{min-height:36px}
+/* 11) Mètode, footer i altres ajustos */
+.method-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 920px) {
+  .method-grid { grid-template-columns: 1.1fr .9fr; gap: 32px; }
+}
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 800px) {
+  .footer-grid { grid-template-columns: 1.2fr .8fr .8fr; gap: 24px; }
+}
+.foot-links a { display: inline-block; margin: 4px 6px 0 0; }
+
+/* 12) Formulari (quote) — inputs a una sola columna en mòbil */
+.field.grid-2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+@media (max-width: 640px) {
+  .field.grid-2 { grid-template-columns: 1fr; }
 }
 
-/* Evitar que la capa fosca “tapi” clics si queda oberta */
-.nav-dim[aria-hidden="true"]{display:none}
+/* 13) Accessibilitat i preferències d’usuari */
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+/* 14) Safe areas iOS (per si tens menú/CTA enganxats a les vores) */
+@supports (padding: max(0px)) {
+  body { padding-left: max(0px, env(safe-area-inset-left)); padding-right: max(0px, env(safe-area-inset-right)); }
+  .nav-overlay { padding-top: calc(var(--header-h-sm) + max(8px, env(safe-area-inset-top))); }
+}
