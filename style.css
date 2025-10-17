@@ -569,3 +569,82 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
   * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
 
+/* ===========================
+   Anti-wobble mòbil (overflow-x)
+   Enganxa-ho al FINAL del CSS
+   =========================== */
+
+/* 1) Tallar qualsevol desbordament horitzontal de base */
+html, body { max-width: 100%; overflow-x: clip; } /* (fallback) */
+@supports not (overflow-x: clip) {
+  html, body { overflow-x: hidden; }
+}
+
+/* 2) Pseudo-elements grans i fons difuminats que s'estenen fora */
+#hero-bg,
+#hero-bg::before,
+#hero-bg::after,
+body::after {
+  overflow: hidden;
+  contain: paint;
+}
+
+/* 3) Menú overlay (desktop) — evita que la combinació inset + transform
+      provoqui amplades “fantasma” */
+.nav-overlay{
+  max-width: 100vw;
+  left: 50%; right: auto; /* en lloc d'inset amb right:50% */
+  transform: translate(-50%, 0) perspective(1000px) rotateX(-90deg) scale(.9);
+  will-change: transform;
+  overflow-x: hidden;
+}
+
+/* 4) Menú overlay (mòbil) — ja estava a 100% d'ample, blindem-ho */
+@media (max-width: 980px){
+  .nav-overlay{
+    inset: var(--hdr-sm) 0 auto 0;
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    transform: translateY(-100%);
+  }
+}
+
+/* 5) Carrusel/proyectos — que l'shadow/transform no forci scroll horitzontal */
+.projects .swiper-wrapper{
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-inline: 10px; /* deixa coixí perquè les targetes no "piquin" al marge */
+}
+.swiper-slide.project-card{
+  max-width: 100%;
+  contain: paint;
+}
+
+/* 6) Targetes i efectes que poden desbordar subtilment amb box-shadow/scale */
+.service-card,
+.tip-card,
+.project-card,
+.hero-media {
+  overflow: hidden;
+}
+
+/* 7) Botons flotants/WhatsApp: que mai no eixamplin el layout */
+.whatsapp-button {
+  contain: layout paint;
+  transform-origin: center;
+}
+@media (hover: none) {
+  .whatsapp-button:hover { transform: none; } /* en mòbil evita scale extra */
+}
+
+/* 8) “Scroll-margin” robust per a àncores, amb capçalera fixa */
+[id] { scroll-margin-top: var(--hdr); }
+@media (max-width: 768px){ [id] { scroll-margin-top: var(--hdr-sm); } }
+
+/* 9) Polida extra: evita que elements dins .container
+      puguin forçar 100vw + padding */
+.container { max-width: min(var(--maxw), 100vw); }
+
+
