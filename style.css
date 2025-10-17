@@ -473,3 +473,99 @@ textarea::placeholder, input::placeholder{ color:#6b6f8b; }
 .preloader .monogram span{ color: var(--accent-2); }
 .preloader .progress{ position:absolute; bottom:-26px; font-family:var(--font-display); color:var(--muted); }
 */
+/* ===========================
+   UtiLiX — Responsive Add-ons
+   (enganxa-ho al FINAL de style.css)
+   =========================== */
+
+/* 0) Variables d’alçada de header per compensar anchors (#) */
+:root{
+  --hdr: 88px;     /* desktop approx */
+  --hdr-sm: 64px;  /* mobile approx */
+}
+
+/* Evita que el header fixed tapi el contingut quan vas a #serveis, #quote, etc. */
+[id] { scroll-margin-top: var(--hdr); }
+@media (max-width: 768px){
+  [id] { scroll-margin-top: var(--hdr-sm); }
+}
+
+/* 1) Contenidors i tipografies fluides extra segures */
+.section { padding: clamp(56px, 7.2vw, 112px) 0; }
+.section .section-title { font-size: clamp(1.6rem, 1.1rem + 2.1vw, 2.7rem); }
+.subhead { font-size: clamp(1rem, 0.95rem + 0.5vw, 1.15rem); }
+
+/* 2) Hero – reforç per a pantalles estretes */
+@media (max-width: 700px){
+  .hero { padding-top: 96px; } /* deixa aire sota el header fixed */
+  .headline { flex-direction: column; gap: 6px; text-align: center; }
+  .headline-prefix, .headline-dynamic { white-space: normal; text-wrap: balance; }
+}
+
+/* 3) Header i menú overlay en mòbil */
+@media (max-width: 980px){
+  /* Amaga CTA de desktop i prepara la hamburguesa (ja tens l’estil base fet) */
+  .only-desktop{ display: none !important; }
+
+  /* Fes el menú overlay a pantalla completa i fàcil de clicar */
+  .nav-overlay{
+    inset: var(--hdr-sm) 0 auto 0;        /* ocupa ample complet */
+    width: 100%;
+    transform: translateY(-100%);         /* amagat a dalt */
+    border-radius: 0; box-shadow: none;
+  }
+  body.nav-open .nav-overlay{ transform: translateY(0); }
+
+  .nav-list{ gap: 10px; padding: 16px; }
+  .nav-link{ font-size: clamp(20px, 4vw, 28px); padding: 14px 18px; }
+}
+
+/* 4) Grilles (serveis, tips, projectes) — ja responsives, però polit de gaps */
+@media (min-width: 720px){
+  .services-grid{ gap: 20px; }
+}
+@media (min-width: 1024px){
+  .services-grid{ gap: 24px; }
+}
+
+/* 5) Projectes: botons del carrusel i targeta */
+@media (max-width: 640px){
+  .swiper-slide.project-card{
+    flex-basis: clamp(260px, 84vw, 400px);
+    height: auto; min-height: 320px;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    width: 38px; height: 38px; top: auto; bottom: 6px;
+  }
+  .swiper-button-prev{ left: 8px; }
+  .swiper-button-next{ right: 8px; }
+}
+
+/* 6) Mètode i Footer a una columna en mòbil */
+@media (max-width: 920px){
+  .method-grid{ grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 800px){
+  .footer-grid{ grid-template-columns: 1fr; gap: 18px; padding: 48px 0 32px; }
+  .subfooter{ flex-direction: row; gap: 8px; }
+}
+
+/* 7) Formulari (quote) — inputs a una sola columna en pantalles petites */
+@media (max-width: 640px){
+  .field.grid-2{ grid-template-columns: 1fr !important; }
+}
+
+/* 8) Botoneria i CTA: que no trenquin i s’ajustin */
+.btn { white-space: nowrap; }
+.cta { flex-wrap: wrap; gap: 12px; }
+
+/* 9) WhatsApp flotant: ajust en pantalles petites */
+@media (max-width: 480px){
+  .whatsapp-button{ right: 16px; bottom: 14px; }
+}
+
+/* 10) Accessibilitat: si l’usuari prefereix menys moviment */
+@media (prefers-reduced-motion: reduce){
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
